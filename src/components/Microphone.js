@@ -83,7 +83,7 @@ export default class Microphone extends React.Component {
     recognition.onstart = () => {
       console.log("Listening!")
     }
-    let that = this;
+
     let finalTranscript = ''
 
     recognition.onresult = event => {
