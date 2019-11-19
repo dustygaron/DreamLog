@@ -12,17 +12,17 @@ recognition.lang = 'en-US'
 
 
 //-------COMPONENT-----------------------------
-
 export default class Microphone extends React.Component {
 
   constructor() {
     super()
     this.state = {
       listening: false,
-      voiceText: '',
+      dreamText: ''
     }
     this.toggleListen = this.toggleListen.bind(this)
     this.handleListen = this.handleListen.bind(this)
+    this.setDreamText = this.setDreamText.bind(this)
   }
 
   toggleListen() {
@@ -31,11 +31,18 @@ export default class Microphone extends React.Component {
     }, this.handleListen)
   }
 
+  // Set recorded dream text to state
+  setDreamText(recordedDreamText) {
+    this.setState({
+      dreamText: recordedDreamText
+    })
+    console.log("RECORDED DREAM TEXT ===>>>" + recordedDreamText)
+    console.log("THIS IS state.dreamText ===>>>" + this.state.dreamText)
+  }
 
 
 
   handleListen() {
-
     console.log('listening?', this.state.listening)
 
     if (this.state.listening) {
@@ -57,10 +64,6 @@ export default class Microphone extends React.Component {
     }
     let that = this;
     let finalTranscript = ''
-    console.log("FINAL====>>>> outside of loop: " + finalTranscript);
-    that.saveTheVoice(finalTranscript)
-    console.log("why is this now working?: ", that.saveTheVoice(finalTranscript))
-
 
     recognition.onresult = event => {
       let interimTranscript = ''
@@ -69,7 +72,8 @@ export default class Microphone extends React.Component {
         const transcript = event.results[i][0].transcript;
         if (event.results[i].isFinal) finalTranscript += transcript + ' ';
         else interimTranscript += transcript;
-        console.log("FINAL====>>>>" + finalTranscript);
+        // console.log("FINAL from inside recognition.onresult====>>>>" + finalTranscript);
+        this.setDreamText(finalTranscript)
       }
       console.log("FINAL====>>>> outside the loop ====>: " + finalTranscript);
       // that.saveTheVoice(finalTranscript.value)
@@ -102,29 +106,7 @@ export default class Microphone extends React.Component {
     recognition.onerror = event => {
       console.log("Error occurred in recognition: " + event.error)
     }
-
   }
-
-
-
-
-  // this will be the save method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  saveTheVoice = (theString) => {
-    let savedText;
-    this.setState({voiceText: theString}, () => {
-       savedText = this.state.voiceText;
-    })
-
-    axios.post(`${process.env.REACT_APP_API_URL}/dashboard`, { savedText }, { withCredentials:true })
-    .then(themWords => {
-      console.log(themWords, "themwords in the savethevoice" )
-
-      // console.log("this is just the saved text",savedText);
-  })
-  .catch(err => console.log("Err in savingText: ", err));
-  }
-
-
 
 
 
@@ -141,8 +123,11 @@ export default class Microphone extends React.Component {
           </button>
         <div id='interim' style={interim}></div>
         <div id='final' style={final}></div>
-      <h1> this is the thing: {this.state.voiceText}</h1>
-        <button className='button is-primary'>Log My Dream</button>
+
+        <button className='button is-primary'
+          onClick={() => this.setDreamText()}>Log My Dream
+        </button>
+        <h1>DREAM TEXT FROM STATE: {this.state.dreamText}</h1>
       </div>
     )
   }
