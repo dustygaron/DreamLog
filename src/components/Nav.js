@@ -71,6 +71,9 @@ export default class Nav extends React.Component {
                   <NavLink to="/record-my-dream" className="navbar-item top-nav-item" >
                     Record My Dream
                  </NavLink>
+                  <NavLink to="/dashboard" className="navbar-item top-nav-item" >
+                    Dashboard
+                 </NavLink>
                   <div className="buttons">
                     <NavLink to="/signup-page" className="button is-primary">
                       <strong>Sign up</strong>
@@ -89,6 +92,7 @@ export default class Nav extends React.Component {
           <Route exact path="/" component={Home} />
 
           <Route exact path="/record-my-dream" component={RecordMyDream} />
+          <Route exact path="/dashboard" component={Dashboard} />
 
           <Route exact path="/signup-page" render={() =>
             <Signup
@@ -105,7 +109,8 @@ export default class Nav extends React.Component {
           } />
 
           {/* Login component */}
-          <Route exact path="/login-page" component={Login} />
+          {/* <Route exact path="/login-page" component={Login} /> */}
+
           {/* <Route exact path="/bleh" component={CountriesList} />*/}
           <Route exact path="/personal" component={Personal} />
           <Route exact path="/dashboard"

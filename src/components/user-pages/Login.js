@@ -69,7 +69,7 @@ export default class Login extends React.Component {
             console.log('please input information')
         } else if (this.props.currentUser) {
             return (
-                <Redirect to={`/personal`} />
+                <Redirect to={`/dashboard`} />
             )
         }
 
