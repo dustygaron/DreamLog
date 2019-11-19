@@ -58,7 +58,9 @@ export default class Microphone extends React.Component {
     let that = this;
     let finalTranscript = ''
     console.log("FINAL====>>>> outside of loop: " + finalTranscript);
-    that.saveTheVoice(finalTranscript.value)
+    that.saveTheVoice(finalTranscript)
+    console.log("why is this now working?: ", that.saveTheVoice(finalTranscript))
+
 
     recognition.onresult = event => {
       let interimTranscript = ''
@@ -71,13 +73,13 @@ export default class Microphone extends React.Component {
       }
       console.log("FINAL====>>>> outside the loop ====>: " + finalTranscript);
       // that.saveTheVoice(finalTranscript.value)
-      console.log("wtff: ", that.saveTheVoice(finalTranscript.value))
+      console.log("wtff: ", that.saveTheVoice(finalTranscript))
+      console.log(this.state.voiceText, ":this is the state")
 
 
 
       document.getElementById('interim').innerHTML = interimTranscript
       document.getElementById('final').innerHTML = finalTranscript
-
       //-------COMMANDS------------------------------------
 
       const transcriptArr = finalTranscript.split(' ')
@@ -103,6 +105,9 @@ export default class Microphone extends React.Component {
 
   }
 
+
+
+
   // this will be the save method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   saveTheVoice = (theString) => {
     let savedText;
@@ -119,6 +124,10 @@ export default class Microphone extends React.Component {
   .catch(err => console.log("Err in savingText: ", err));
   }
 
+
+
+
+
   render() {
     return (
       <div style={container}>
@@ -126,7 +135,7 @@ export default class Microphone extends React.Component {
           className="button"
           style={button}
           onClick={this.toggleListen}>
-          <i class="fas fa-microphone"></i>
+          <i className="fas fa-microphone"></i>
           &nbsp;
           Toggle Microphone
           </button>
