@@ -57,10 +57,10 @@ export default class Home extends React.Component {
         </section>
 
 
-        <section class="section has-text-centered">
-          <div class="container">
-            <h1 class="title">Ready to try it out?</h1>
-            <h2 class="subtitle">
+        <section className="section has-text-centered">
+          <div className="container">
+            <h1 className="title">Ready to try it out?</h1>
+            <h2 className="subtitle">
               Let's get started! It only takes a second to <strong>create your account</strong>.
              </h2>
             <button className="button">Create your Account</button>
@@ -68,8 +68,8 @@ export default class Home extends React.Component {
         </section>
 
 
-        <footer class="footer">
-          <div class="content has-text-centered">
+        <footer className="footer">
+          <div className="content has-text-centered">
             <p>
               &copy; 2019 <strong>DreamLog</strong> is a project by <a href="https://github.com/dustygaron">Dusty Garon</a> and
         <a href="https://github.com/OscarLeon15"> Oscar Leon</a>.

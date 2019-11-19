@@ -1,7 +1,11 @@
 // 'use strict'
 import React from "react"
+<<<<<<< HEAD
+import axios from "axios"
+=======
 // import axios from 'axios'
 
+>>>>>>> d805cb01ff3e629b075463b87a8315d6ce8ec52f
 //-------SPEECH RECOGNITION-------------------
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
@@ -33,14 +37,33 @@ export default class Microphone extends React.Component {
   }
 
   // Set recorded dream text to state
-  setDreamText(recordedDreamText) {
-    this.setState({
-      dreamText: recordedDreamText
+  
+  setDreamText =(recordedDreamText) => {
+    let savedText;
+    this.setState({  dreamText: recordedDreamText }, () => {
+      savedText = this.state.dreamText;
     })
     console.log("RECORDED DREAM TEXT ===>>>" + recordedDreamText)
     console.log("THIS IS state.dreamText ===>>>" + this.state.dreamText)
+    
+    axios.post(`${process.env.REACT_APP_API_URL}/dashboard`, { savedText }, { withCredentials:true })
+    .then(themWords => {
+      console.log(themWords)
+
+  })
+  .catch(err => console.log("Err in signup: ", err));
   }
 
+
+
+  // setDreamText(recordedDreamText) {
+  //   this.setState({
+  //     dreamText: recordedDreamText
+  //   })
+  //   console.log("RECORDED DREAM TEXT ===>>>" + recordedDreamText)
+  //   console.log("THIS IS state.dreamText ===>>>" + this.state.dreamText)
+    
+  // }
 
 
   handleListen() {
@@ -63,7 +86,7 @@ export default class Microphone extends React.Component {
     recognition.onstart = () => {
       console.log("Listening!")
     }
-
+    let that = this;
     let finalTranscript = ''
 
     recognition.onresult = event => {
@@ -76,9 +99,13 @@ export default class Microphone extends React.Component {
         // console.log("FINAL from inside recognition.onresult====>>>>" + finalTranscript);
         this.setDreamText(finalTranscript)
       }
+      // console.log("FINAL====>>>> outside the loop ====>: " + finalTranscript);
+
+
+
+
       document.getElementById('interim').innerHTML = interimTranscript
       document.getElementById('final').innerHTML = finalTranscript
-
       //-------COMMANDS------------------------------------
 
       const transcriptArr = finalTranscript.split(' ')
@@ -94,6 +121,7 @@ export default class Microphone extends React.Component {
         }
       }
     }
+    // console.log("FINAL====>>>>" + finalTranscript);
 
     //------------------------------------------------------
 
