@@ -115,20 +115,26 @@ const EditEntry = (props) => {
       <div className="columns">
         <div className="column">
           <label className="label">Feeling</label>
-          <div class="field is-grouped is-grouped-multiline">
-            <p class="control">
-              <a class="button smiley">
-                😊
+          <div className="field is-grouped is-grouped-multiline">
+            <p className="control">
+              <a href="http://#" className="button smiley">
+                <span role="img" alt="happy face" aria-label="smiley face happy">
+                  😊
+                </span>
               </a>
             </p>
-            <p class="control">
-              <a class="button smiley">
-                😟
+            <p className="control">
+              <a href="http://#" className="button smiley">
+                <span role="img" alt="sad face" aria-label="sad face happy">
+                  😟
+                </span>
               </a>
             </p>
-            <p class="control">
-              <a class="button smiley">
-                🤔
+            <p className="control">
+              <a href="http://#" className="button smiley">
+                <span role="img" alt="thoughtful face" aria-label="thoughtful face happy">
+                  🤔
+                </span>
               </a>
             </p>
           </div>

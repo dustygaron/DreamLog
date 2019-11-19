@@ -1,5 +1,6 @@
 // 'use strict'
 import React from "react"
+// import axios from 'axios'
 
 //-------SPEECH RECOGNITION-------------------
 
@@ -103,6 +104,7 @@ export default class Microphone extends React.Component {
 
 
 
+
   render() {
     return (
       <div style={container}>
@@ -110,16 +112,22 @@ export default class Microphone extends React.Component {
           className="button"
           style={button}
           onClick={this.toggleListen}>
-          <i class="fas fa-microphone"></i>
+          <i className="fas fa-microphone"></i>
           &nbsp;
           Toggle Microphone
           </button>
         <div id='interim' style={interim}></div>
         <div id='final' style={final}></div>
 
-        <button className='button is-primary'
+        {/* <button className='button is-primary'
           onClick={() => this.setDreamText()}>Log My Dream
+        </button> */}
+
+        <button className='button is-primary'
+          onSubmit={event => this.handleSubmit(event)}>
+          Log My Dream
         </button>
+
         <h1>DREAM TEXT FROM STATE: {this.state.dreamText}</h1>
       </div>
     )
