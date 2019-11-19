@@ -1,11 +1,7 @@
 // 'use strict'
 import React from "react"
-<<<<<<< HEAD
-import axios from "axios"
-=======
-// import axios from 'axios'
+import axios from 'axios'
 
->>>>>>> d805cb01ff3e629b075463b87a8315d6ce8ec52f
 //-------SPEECH RECOGNITION-------------------
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
@@ -39,22 +35,27 @@ export default class Microphone extends React.Component {
   // Set recorded dream text to state
   
   setDreamText =(recordedDreamText) => {
-    let savedText;
-    this.setState({  dreamText: recordedDreamText }, () => {
-      savedText = this.state.dreamText;
+      let savedText;
+      this.setState({  dreamText: recordedDreamText }, () => {
+        savedText = this.state.dreamText;
+      })
+      // let savedText;
+      // this.setState({  dreamText: recordedDreamText }, () => {
+      //   savedText = this.state.dreamText;
+      // })
+      console.log("RECORDED DREAM TEXT ===>>>" + recordedDreamText)
+      console.log("THIS IS state.dreamText ===>>>" + this.state.dreamText)
+      
+      axios.post(`${process.env.REACT_APP_API_URL}/dashboard`, { savedText }, { withCredentials:true })
+      .then(themWords => {
+
+        console.log("=-=-=-=-=-=-=-=-=-=-=", themWords)
+        console.log("=-=-=-=-=-=-=-=-=-=-=blahhhhhhhh", this.state.savedText)
+        alert("kind of works")
+
     })
-    console.log("RECORDED DREAM TEXT ===>>>" + recordedDreamText)
-    console.log("THIS IS state.dreamText ===>>>" + this.state.dreamText)
-    
-    axios.post(`${process.env.REACT_APP_API_URL}/dashboard`, { savedText }, { withCredentials:true })
-    .then(themWords => {
-      console.log(themWords)
-
-  })
-  .catch(err => console.log("Err in signup: ", err));
+    .catch(err => console.log("Err in axios post: ", err));
   }
-
-
 
   // setDreamText(recordedDreamText) {
   //   this.setState({
@@ -62,7 +63,6 @@ export default class Microphone extends React.Component {
   //   })
   //   console.log("RECORDED DREAM TEXT ===>>>" + recordedDreamText)
   //   console.log("THIS IS state.dreamText ===>>>" + this.state.dreamText)
-    
   // }
 
 
@@ -86,40 +86,54 @@ export default class Microphone extends React.Component {
     recognition.onstart = () => {
       console.log("Listening!")
     }
-    let that = this;
-    let finalTranscript = ''
 
+    // let finalTranscript = ''
+    let finalTranscript = ''
+    
     recognition.onresult = event => {
       let interimTranscript = ''
 
       for (let i = event.resultIndex; i < event.results.length; i++) {
+        console.log('what is it', event.results)
         const transcript = event.results[i][0].transcript;
         if (event.results[i].isFinal) finalTranscript += transcript + ' ';
         else interimTranscript += transcript;
         // console.log("FINAL from inside recognition.onresult====>>>>" + finalTranscript);
-        this.setDreamText(finalTranscript)
+        // this.setDreamText(finalTranscript)
       }
-      // console.log("FINAL====>>>> outside the loop ====>: " + finalTranscript);
 
 
 
 
       document.getElementById('interim').innerHTML = interimTranscript
       document.getElementById('final').innerHTML = finalTranscript
+      // console.log(finalTranscript)
+      this.setState({
+        dreamText: finalTranscript
+      }, () => {
+        console.log(this.state.dreamText)
+      }
+      )
+      // this.setState({dreamText: finalTranscript}, ()=>{
+      //   console.log("tell me why god....", this.state.dreamText)
+      // })
+     
       //-------COMMANDS------------------------------------
 
       const transcriptArr = finalTranscript.split(' ')
       const stopCmd = transcriptArr.slice(-3, -1)
       console.log('stopCmd', stopCmd)
 
-      if (stopCmd[0] === 'stop' && stopCmd[1] === 'listening') {
-        recognition.stop()
-        recognition.onend = () => {
-          console.log('Stopped listening per command')
-          const finalText = transcriptArr.slice(0, -3).join(' ')
-          document.getElementById('final').innerHTML = finalText
-        }
-      }
+//what does this do?
+      // if (stopCmd[0] === 'stop' && stopCmd[1] === 'listening') {
+      //   recognition.stop()
+      //   recognition.onend = () => {
+      //     console.log('Stopped listening per command')
+      //     const finalText = transcriptArr.slice(0, -3).join(' ')
+      //     console.log("what is this$$$$$$$$$$$$$$$$ one: ", finalText)
+      //     document.getElementById('final').innerHTML = finalText
+      //   }
+      // }
     }
     // console.log("FINAL====>>>>" + finalTranscript);
 
@@ -147,14 +161,18 @@ export default class Microphone extends React.Component {
         <div id='interim' style={interim}></div>
         <div id='final' style={final}></div>
 
-        {/* <button className='button is-primary'
-          onClick={() => this.setDreamText()}>Log My Dream
-        </button> */}
-
         <button className='button is-primary'
-          onSubmit={event => this.handleSubmit(event)}>
-          Log My Dream
+          onClick={() => this.setDreamText(this.state.dreamText)}>Log My Dream
         </button>
+
+        {/* <button className='button is-primary'
+          // onSubmit={event => this.handleSubmit(event)
+          // onClick={ this.setDreamText() }
+          >
+
+          Log My Dream
+
+        </button> */}
 
         <h1>DREAM TEXT FROM STATE: {this.state.dreamText}</h1>
       </div>

@@ -117,23 +117,6 @@ const EditEntry = (props) => {
           <label className="label">Feeling</label>
           <div className="field is-grouped is-grouped-multiline">
             <p className="control">
-<<<<<<< HEAD
-              <a className="button smiley">
-                {/* <span role="img">😊</span> */}
-                😊
-              </a>
-            </p>
-            <p className="control">
-              <a className="button smiley">
-               {/* <span role="img">😟</span>  */}
-               😟
-              </a>
-            </p>
-            <p className="control">
-              <a className="button smiley">
-                {/* <span role="img">🤔</span> */}
-                🤔
-=======
               <a href="http://#" className="button smiley">
                 <span role="img" alt="happy face" aria-label="smiley face happy">
                   😊
@@ -152,7 +135,6 @@ const EditEntry = (props) => {
                 <span role="img" alt="thoughtful face" aria-label="thoughtful face happy">
                   🤔
                 </span>
->>>>>>> d805cb01ff3e629b075463b87a8315d6ce8ec52f
               </a>
             </p>
           </div>
