@@ -7,12 +7,21 @@
   display: flex;
 }
 
+.spacer {
+  /* border: 1px solid red; */
+  margin: 40px 0;
+}
+
 .container h1 {
   margin-bottom: 10px;
 }
 
 .card p {
   color: #4a4a4a !important;
+}
+
+table {
+  margin: 0 auto;
 }
 
 .form-style {
@@ -139,4 +148,9 @@ a.navbar-item:hover {
 .placeholder-2 {
   max-width: 80%;
   float: right;
+}
+
+/* Dashboard */
+table {
+  border: 1px solid #eee;
 }

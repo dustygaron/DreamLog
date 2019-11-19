@@ -73,12 +73,6 @@ export default class Login extends React.Component {
             )
         }
 
-        // if (this.props.currentUser) {
-
-        //     return (
-        //         <Redirect to={Dashboard} />
-        //     )
-        // }
 
         return (
             <div>

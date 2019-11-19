@@ -2,9 +2,6 @@ import React from 'react';
 import './App.css';
 import axios from "axios";
 import Nav from "./components/Nav"
-// import 'react-bulma-components/dist/react-bulma-components.min.css'
-// import img from './img/old.png'
-
 
 
 export default class App extends React.Component {
