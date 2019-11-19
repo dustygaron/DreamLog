@@ -32,14 +32,33 @@ export default class Microphone extends React.Component {
   }
 
   // Set recorded dream text to state
-  setDreamText(recordedDreamText) {
-    this.setState({
-      dreamText: recordedDreamText
+  
+  setDreamText =(recordedDreamText) => {
+    let savedText;
+    this.setState({  dreamText: recordedDreamText }, () => {
+      savedText = this.state.dreamText;
     })
     console.log("RECORDED DREAM TEXT ===>>>" + recordedDreamText)
     console.log("THIS IS state.dreamText ===>>>" + this.state.dreamText)
+    
+    axios.post(`${process.env.REACT_APP_API_URL}/dashboard`, { savedText }, { withCredentials:true })
+    .then(themWords => {
+      console.log(themWords)
+
+  })
+  .catch(err => console.log("Err in signup: ", err));
   }
 
+
+
+  // setDreamText(recordedDreamText) {
+  //   this.setState({
+  //     dreamText: recordedDreamText
+  //   })
+  //   console.log("RECORDED DREAM TEXT ===>>>" + recordedDreamText)
+  //   console.log("THIS IS state.dreamText ===>>>" + this.state.dreamText)
+    
+  // }
 
 
   handleListen() {
@@ -75,10 +94,8 @@ export default class Microphone extends React.Component {
         // console.log("FINAL from inside recognition.onresult====>>>>" + finalTranscript);
         this.setDreamText(finalTranscript)
       }
-      console.log("FINAL====>>>> outside the loop ====>: " + finalTranscript);
-      // that.saveTheVoice(finalTranscript.value)
-      console.log("wtff: ", that.saveTheVoice(finalTranscript))
-      console.log(this.state.voiceText, ":this is the state")
+      // console.log("FINAL====>>>> outside the loop ====>: " + finalTranscript);
+
 
 
 
@@ -100,7 +117,7 @@ export default class Microphone extends React.Component {
       }
     }
     // console.log("FINAL====>>>>" + finalTranscript);
-    // that.saveTheVoice(finalTranscript)
+
     //------------------------------------------------------
 
     recognition.onerror = event => {
