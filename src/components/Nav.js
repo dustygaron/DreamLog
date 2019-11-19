@@ -113,9 +113,9 @@ export default class Nav extends React.Component {
 
           {/* <Route exact path="/bleh" component={CountriesList} />*/}
           <Route exact path="/personal" component={Personal} />
-          <Route exact path="/dashboard"
+          <Route exact path="/dashboard/:id"
             render={props => <Dashboard {...props}
-              theUser={this.state.currentUser}
+              theUser={this.state.currentUser._id}
             />
             } />
         </Switch>

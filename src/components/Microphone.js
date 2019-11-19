@@ -1,6 +1,6 @@
 // 'use strict'
 import React from "react"
-
+import axios from "axios"
 //-------SPEECH RECOGNITION-------------------
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
@@ -18,7 +18,8 @@ export default class Microphone extends React.Component {
   constructor() {
     super()
     this.state = {
-      listening: false
+      listening: false,
+      voiceText: '',
     }
     this.toggleListen = this.toggleListen.bind(this)
     this.handleListen = this.handleListen.bind(this)
@@ -29,6 +30,23 @@ export default class Microphone extends React.Component {
       listening: !this.state.listening
     }, this.handleListen)
   }
+
+// this will be the save method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  saveTheVoice = (theString) => {
+    let savedText;
+    this.setState({voiceText: theString}, () => {
+       savedText = this.state.voiceText;
+    })
+
+    axios.post(`${process.env.REACT_APP_API_URL}/dashboard`, { savedText }, { withCredentials:true })
+    .then(themWords => {
+      console.log(themWords, "themwords in the savethevoice" )
+
+      // console.log("this is just the saved text",savedText);
+  })
+  .catch(err => console.log("Err in savingText: ", err));
+  }
+
 
   handleListen() {
 
@@ -51,8 +69,10 @@ export default class Microphone extends React.Component {
     recognition.onstart = () => {
       console.log("Listening!")
     }
-
+    let that = this;
     let finalTranscript = ''
+    console.log("FINAL====>>>> outside of loop: " + finalTranscript);
+
     recognition.onresult = event => {
       let interimTranscript = ''
 
@@ -60,8 +80,13 @@ export default class Microphone extends React.Component {
         const transcript = event.results[i][0].transcript;
         if (event.results[i].isFinal) finalTranscript += transcript + ' ';
         else interimTranscript += transcript;
-        console.log("FINAL====>>>>" + typeof finalTranscript);
       }
+      console.log("FINAL====>>>> inside the loop ====>: " + finalTranscript);
+      this.saveTheVoice(finalTranscript.value)
+      console.log("wtff: ", this.saveTheVoice(finalTranscript.value))
+
+
+
       document.getElementById('interim').innerHTML = interimTranscript
       document.getElementById('final').innerHTML = finalTranscript
 
@@ -80,7 +105,8 @@ export default class Microphone extends React.Component {
         }
       }
     }
-
+    // console.log("FINAL====>>>>" + finalTranscript);
+    // that.saveTheVoice(finalTranscript)
     //------------------------------------------------------
 
     recognition.onerror = event => {
