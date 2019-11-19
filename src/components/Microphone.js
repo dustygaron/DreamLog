@@ -12,16 +12,17 @@ recognition.lang = 'en-US'
 
 
 //-------COMPONENT-----------------------------
-
 export default class Microphone extends React.Component {
 
   constructor() {
     super()
     this.state = {
-      listening: false
+      listening: false,
+      dreamText: ''
     }
     this.toggleListen = this.toggleListen.bind(this)
     this.handleListen = this.handleListen.bind(this)
+    this.setDreamText = this.setDreamText.bind(this)
   }
 
   toggleListen() {
@@ -30,8 +31,18 @@ export default class Microphone extends React.Component {
     }, this.handleListen)
   }
 
-  handleListen() {
+  // Set recorded dream text to state
+  setDreamText(recordedDreamText) {
+    this.setState({
+      dreamText: recordedDreamText
+    })
+    console.log("RECORDED DREAM TEXT ===>>>" + recordedDreamText)
+    console.log("THIS IS state.dreamText ===>>>" + this.state.dreamText)
+  }
 
+
+
+  handleListen() {
     console.log('listening?', this.state.listening)
 
     if (this.state.listening) {
@@ -53,6 +64,7 @@ export default class Microphone extends React.Component {
     }
 
     let finalTranscript = ''
+
     recognition.onresult = event => {
       let interimTranscript = ''
 
@@ -60,7 +72,8 @@ export default class Microphone extends React.Component {
         const transcript = event.results[i][0].transcript;
         if (event.results[i].isFinal) finalTranscript += transcript + ' ';
         else interimTranscript += transcript;
-        console.log("FINAL====>>>>" + finalTranscript);
+        // console.log("FINAL from inside recognition.onresult====>>>>" + finalTranscript);
+        this.setDreamText(finalTranscript)
       }
       document.getElementById('interim').innerHTML = interimTranscript
       document.getElementById('final').innerHTML = finalTranscript
@@ -86,8 +99,9 @@ export default class Microphone extends React.Component {
     recognition.onerror = event => {
       console.log("Error occurred in recognition: " + event.error)
     }
-
   }
+
+
 
   render() {
     return (
@@ -103,7 +117,10 @@ export default class Microphone extends React.Component {
         <div id='interim' style={interim}></div>
         <div id='final' style={final}></div>
 
-        <button className='button is-primary'>Log My Dream</button>
+        <button className='button is-primary'
+          onClick={() => this.setDreamText()}>Log My Dream
+        </button>
+        <h1>DREAM TEXT FROM STATE: {this.state.dreamText}</h1>
       </div>
     )
   }
