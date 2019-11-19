@@ -1,3 +1,7 @@
+html {
+  background: #f8f8f8;
+}
+
 .container {
   /* padding-top: 50px; */
   /* border: 2px dotted red; */
@@ -5,6 +9,11 @@
 
 .flex {
   display: flex;
+}
+
+.spacer {
+  /* border: 1px solid red; */
+  margin: 40px 0;
 }
 
 .container h1 {
@@ -15,9 +24,21 @@
   color: #4a4a4a !important;
 }
 
+table {
+  margin: 0 auto;
+}
+
+.table-header {
+  background: #dbdbdb;
+}
+
 .form-style {
   padding: 3rem;
   margin-top: 3rem;
+}
+
+.smiley {
+  font-size: 20px;
 }
 
 .center-nav-text {
@@ -67,7 +88,7 @@ a.navbar-item:hover {
   background: linear-gradient(to top right, #524ad0 10%, #D099FA) !important;
 } */
 
-.gradient-1 {
+/* .gradient-1 {
   background-image: linear-gradient(
     90deg,
     #9647ff,
@@ -92,7 +113,7 @@ a.navbar-item:hover {
     #16bdcc 95.1%,
     #13bfcb
   ) !important;
-}
+} */
 
 .dark-purple-gradient {
   background-image: linear-gradient(
@@ -139,4 +160,13 @@ a.navbar-item:hover {
 .placeholder-2 {
   max-width: 80%;
   float: right;
+}
+
+/* Dashboard */
+table {
+  border: 1px solid #eee;
+}
+
+.microphone-btn {
+  margin-bottom: 50px;
 }
