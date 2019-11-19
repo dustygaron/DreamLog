@@ -1,6 +1,8 @@
 import React from 'react'
 import DreamEntry from '../components/DreamEntry'
 
+
+
 export default class Dashboard extends React.Component {
 
   constructor(props) {
@@ -22,9 +24,9 @@ export default class Dashboard extends React.Component {
 
         <section className="container">
 
-          <table className="table">
+          <table className="table is-striped is-narrow is-hoverable is-fullwidth">
             <thead>
-              <tr>
+              <tr className="table-header">
                 <th>Dream Name</th>
                 <th><abbr title="Position">Date</abbr></th>
                 <th>Day of Week</th>
@@ -38,7 +40,7 @@ export default class Dashboard extends React.Component {
               name="Wicked Dreams"
               date="November 18, 2019"
               day="Monday"
-              mood="☺"
+              mood="🤔"
               toSleep="10:30 pm"
               wakeUp="7:30 am"
             />
@@ -47,7 +49,7 @@ export default class Dashboard extends React.Component {
               name="Rainy Saturday"
               date="November 23, 2019"
               day="Monday"
-              mood="☺"
+              mood="😊"
               toSleep="10:00 pm"
               wakeUp="9:15 am"
             />

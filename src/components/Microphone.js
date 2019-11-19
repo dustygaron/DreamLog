@@ -60,7 +60,7 @@ export default class Microphone extends React.Component {
         const transcript = event.results[i][0].transcript;
         if (event.results[i].isFinal) finalTranscript += transcript + ' ';
         else interimTranscript += transcript;
-        console.log("FINAL====>>>>" + typeof finalTranscript);
+        console.log("FINAL====>>>>" + finalTranscript);
       }
       document.getElementById('interim').innerHTML = interimTranscript
       document.getElementById('final').innerHTML = finalTranscript
@@ -96,10 +96,14 @@ export default class Microphone extends React.Component {
           className="button"
           style={button}
           onClick={this.toggleListen}>
+          <i class="fas fa-microphone"></i>
+          &nbsp;
           Toggle Microphone
           </button>
         <div id='interim' style={interim}></div>
         <div id='final' style={final}></div>
+
+        <button className='button is-primary'>Log My Dream</button>
       </div>
     )
   }
@@ -117,26 +121,19 @@ const styles = {
     alignItems: 'center',
     textAlign: 'center'
   },
-  // button: {
-  //   width: '60px',
-  //   height: '60px',
-  //   background: 'lightblue',
-  //   borderRadius: '50%',
-  //   margin: '6em 0 2em 0'
-  // },
   interim: {
     color: 'gray',
-    border: '#ccc 1px solid',
+    borderBottom: '#ccc 1px solid',
     padding: '1em',
     margin: '1em',
-    width: '300px'
+    width: '700px'
   },
   final: {
     color: 'black',
     border: '#ccc 1px solid',
     padding: '1em',
     margin: '1em',
-    width: '300px'
+    width: '700px'
   }
 }
 

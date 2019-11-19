@@ -1,6 +1,4 @@
 import React from "react"
-// import logo from '../img/logo.png'
-// import Microphone from '../components/Microphone'
 import placeholderImg from '../img/placeholder.png'
 
 export default class Home extends React.Component {
