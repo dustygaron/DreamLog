@@ -31,21 +31,7 @@ export default class Microphone extends React.Component {
     }, this.handleListen)
   }
 
-// this will be the save method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  saveTheVoice = (theString) => {
-    let savedText;
-    this.setState({voiceText: theString}, () => {
-       savedText = this.state.voiceText;
-    })
 
-    axios.post(`${process.env.REACT_APP_API_URL}/dashboard`, { savedText }, { withCredentials:true })
-    .then(themWords => {
-      console.log(themWords, "themwords in the savethevoice" )
-
-      // console.log("this is just the saved text",savedText);
-  })
-  .catch(err => console.log("Err in savingText: ", err));
-  }
 
 
   handleListen() {
@@ -72,6 +58,7 @@ export default class Microphone extends React.Component {
     let that = this;
     let finalTranscript = ''
     console.log("FINAL====>>>> outside of loop: " + finalTranscript);
+    that.saveTheVoice(finalTranscript.value)
 
     recognition.onresult = event => {
       let interimTranscript = ''
@@ -82,8 +69,8 @@ export default class Microphone extends React.Component {
         else interimTranscript += transcript;
       }
       console.log("FINAL====>>>> inside the loop ====>: " + finalTranscript);
-      this.saveTheVoice(finalTranscript.value)
-      console.log("wtff: ", this.saveTheVoice(finalTranscript.value))
+      // that.saveTheVoice(finalTranscript.value)
+      console.log("wtff: ", that.saveTheVoice(finalTranscript.value))
 
 
 
@@ -115,6 +102,22 @@ export default class Microphone extends React.Component {
 
   }
 
+  // this will be the save method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  saveTheVoice = (theString) => {
+    let savedText;
+    this.setState({voiceText: theString}, () => {
+       savedText = this.state.voiceText;
+    })
+
+    axios.post(`${process.env.REACT_APP_API_URL}/dashboard`, { savedText }, { withCredentials:true })
+    .then(themWords => {
+      console.log(themWords, "themwords in the savethevoice" )
+
+      // console.log("this is just the saved text",savedText);
+  })
+  .catch(err => console.log("Err in savingText: ", err));
+  }
+
   render() {
     return (
       <div style={container}>
@@ -126,6 +129,7 @@ export default class Microphone extends React.Component {
           </button>
         <div id='interim' style={interim}></div>
         <div id='final' style={final}></div>
+      <h1> this is the thing: {this.state.voiceText}</h1>
       </div>
     )
   }
