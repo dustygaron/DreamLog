@@ -1,0 +1,142 @@
+.container {
+  /* padding-top: 50px; */
+  /* border: 2px dotted red; */
+}
+
+.flex {
+  display: flex;
+}
+
+.container h1 {
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #4a4a4a !important;
+}
+
+.form-style {
+  padding: 3rem;
+  margin-top: 3rem;
+}
+
+.center-nav-text {
+  flex-grow: 1;
+  justify-content: center !important;
+}
+
+.center-nav-text > * {
+  margin: 0 1rem;
+}
+
+.navbar {
+  padding: 20px 0;
+}
+
+a.navbar-item:focus,
+a.navbar-item:focus-within,
+a.navbar-item:hover {
+  background: none !important;
+  color: white;
+}
+
+.top-nav-item {
+  color: white;
+  margin-right: 20px;
+}
+
+.adjust-40-up {
+  transform: translateY(-100px);
+}
+
+/* Cards ---------- */
+.card h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.card-footer-item {
+  background: navajowhite;
+}
+
+/* ------------------*/
+/* Microphone
+/* ----------------- */
+/* Make home bg purple gradient */
+/* .hero.is-primary {
+  background: linear-gradient(to top right, #524ad0 10%, #D099FA) !important;
+} */
+
+.gradient-1 {
+  background-image: linear-gradient(
+    90deg,
+    #9647ff,
+    #9449fe 1.8%,
+    #924bfe 3.8%,
+    #8755f9 15.2%,
+    #8557f8 17.1%,
+    #7e5df6 22%,
+    #7b60f4 24.3%,
+    #7962f4 25.7%,
+    #7368f1 30.4%,
+    #6a70ed 36.3%,
+    #6673ec 38.3%,
+    #6773ec 38.9%,
+    #6574ec 38.9%,
+    #5c7de8 44.8%,
+    #5782e6 48.4%,
+    #4e8ae2 53.7%,
+    #488fe0 57.1%,
+    #4593de 59.6%,
+    #4196dd 62%,
+    #16bdcc 95.1%,
+    #13bfcb
+  ) !important;
+}
+
+.dark-purple-gradient {
+  background-image: linear-gradient(
+    90deg,
+    #20123a 20%,
+    #281346 40%,
+    #271a4c 60%,
+    #2f1859 80%
+  ) !important;
+}
+
+.dark-purple-gradient h1,
+.dark-purple-gradient h2 {
+  color: white;
+}
+
+.hero-home-2 {
+  background: #031425;
+}
+
+.hero-home-3 {
+  background: black;
+  padding: 50px 0 0 0;
+}
+
+.hero-home-2 h1,
+.hero-home-2 h2,
+.hero-home-3 h1,
+.hero-home-3 h2 {
+  color: white;
+  text-align: center;
+}
+
+.home-mic-section {
+  text-align: center;
+  padding: 30px 0;
+}
+
+.placeholder {
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+.placeholder-2 {
+  max-width: 80%;
+  float: right;
+}
