@@ -19,7 +19,7 @@ export default class Microphone extends React.Component {
     super()
     this.state = {
       listening: false,
-      dreamText: ''
+      dreamText: '',
     }
     this.toggleListen = this.toggleListen.bind(this)
     this.handleListen = this.handleListen.bind(this)
@@ -45,15 +45,15 @@ export default class Microphone extends React.Component {
       // })
       console.log("RECORDED DREAM TEXT ===>>>" + recordedDreamText)
       console.log("THIS IS state.dreamText ===>>>" + this.state.dreamText)
+      console.log("THIS IS savedText %%%%%===>>>" + savedText)
       
       axios.post(`${process.env.REACT_APP_API_URL}/dashboard`, { savedText }, { withCredentials:true })
       .then(themWords => {
 
         console.log("=-=-=-=-=-=-=-=-=-=-=", themWords)
         console.log("=-=-=-=-=-=-=-=-=-=-=blahhhhhhhh", this.state.savedText)
-        alert("kind of works")
 
-    })
+      })
     .catch(err => console.log("Err in axios post: ", err));
   }
 
@@ -87,7 +87,6 @@ export default class Microphone extends React.Component {
       console.log("Listening!")
     }
 
-    // let finalTranscript = ''
     let finalTranscript = ''
     
     recognition.onresult = event => {
@@ -111,9 +110,9 @@ export default class Microphone extends React.Component {
       this.setState({
         dreamText: finalTranscript
       }, () => {
-        console.log(this.state.dreamText)
-      }
-      )
+        console.log("tell me why god....", this.state.dreamText)
+      })
+      
       // this.setState({dreamText: finalTranscript}, ()=>{
       //   console.log("tell me why god....", this.state.dreamText)
       // })
@@ -167,7 +166,6 @@ export default class Microphone extends React.Component {
 
         {/* <button className='button is-primary'
           // onSubmit={event => this.handleSubmit(event)
-          // onClick={ this.setDreamText() }
           >
 
           Log My Dream
