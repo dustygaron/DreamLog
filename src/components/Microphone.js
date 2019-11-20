@@ -1,11 +1,6 @@
 // 'use strict'
 import React from "react"
-<<<<<<< HEAD
 import axios from "axios"
-=======
-// import axios from 'axios'
-
->>>>>>> d805cb01ff3e629b075463b87a8315d6ce8ec52f
 //-------SPEECH RECOGNITION-------------------
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
@@ -37,33 +32,21 @@ export default class Microphone extends React.Component {
   }
 
   // Set recorded dream text to state
-  
-  setDreamText =(recordedDreamText) => {
-    let savedText;
-    this.setState({  dreamText: recordedDreamText }, () => {
-      savedText = this.state.dreamText;
+  setDreamText = (recordedDreamText) => {
+    this.setState({
+      dreamText: recordedDreamText
     })
     console.log("RECORDED DREAM TEXT ===>>>" + recordedDreamText)
     console.log("THIS IS state.dreamText ===>>>" + this.state.dreamText)
-    
-    axios.post(`${process.env.REACT_APP_API_URL}/dashboard`, { savedText }, { withCredentials:true })
-    .then(themWords => {
-      console.log(themWords)
-
-  })
-  .catch(err => console.log("Err in signup: ", err));
   }
 
-
-
-  // setDreamText(recordedDreamText) {
-  //   this.setState({
-  //     dreamText: recordedDreamText
-  //   })
-  //   console.log("RECORDED DREAM TEXT ===>>>" + recordedDreamText)
-  //   console.log("THIS IS state.dreamText ===>>>" + this.state.dreamText)
-    
-  // }
+  sendDreamTextToDb = (dreamEntry) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/dreamRoute`, { dreamEntry }, { withCredentials: true })
+      .then(thisDreamText => {
+        console.log("This dream text in axios ===>>>" + thisDreamText)
+      })
+      .catch(err => console.log("Err sending dream text to database from axios: ", err));
+  }
 
 
   handleListen() {
@@ -86,7 +69,7 @@ export default class Microphone extends React.Component {
     recognition.onstart = () => {
       console.log("Listening!")
     }
-    let that = this;
+
     let finalTranscript = ''
 
     recognition.onresult = event => {
@@ -147,14 +130,14 @@ export default class Microphone extends React.Component {
         <div id='interim' style={interim}></div>
         <div id='final' style={final}></div>
 
-        {/* <button className='button is-primary'
-          onClick={() => this.setDreamText()}>Log My Dream
-        </button> */}
-
         <button className='button is-primary'
+          onClick={() => this.sendDreamTextToDb(this.state.dreamText)}>Log My Dream
+        </button>
+
+        {/* <button className='button is-primary'
           onSubmit={event => this.handleSubmit(event)}>
           Log My Dream
-        </button>
+        </button> */}
 
         <h1>DREAM TEXT FROM STATE: {this.state.dreamText}</h1>
       </div>
