@@ -67,6 +67,7 @@ export default class Microphone extends React.Component {
   }
 
   sendDreamTextToDb = (dreamEntry) => {
+    console.log("text got pu$$$$$$hed ===========================>")
     axios.post(`${process.env.REACT_APP_API_URL}/dreamRoute`, { dreamEntry }, { withCredentials: true })
       .then(thisDreamText => {
         console.log("This dream text in axios ===>>>" + thisDreamText)
@@ -77,7 +78,7 @@ export default class Microphone extends React.Component {
 
 
 
-  
+
   handleListen() {
     console.log('listening?', this.state.listening)
 
