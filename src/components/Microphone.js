@@ -32,18 +32,20 @@ export default class Microphone extends React.Component {
   }
 
   // Set recorded dream text to state
-  setDreamText = (recordedDreamText) => {
+  setDreamText(recordedDreamText) {
     this.setState({
       dreamText: recordedDreamText
     })
     console.log("RECORDED DREAM TEXT ===>>>" + recordedDreamText)
     console.log("THIS IS state.dreamText ===>>>" + this.state.dreamText)
+
   }
 
   sendDreamTextToDb = (dreamEntry) => {
     axios.post(`${process.env.REACT_APP_API_URL}/dreamRoute`, { dreamEntry }, { withCredentials: true })
       .then(thisDreamText => {
         console.log("This dream text in axios ===>>>" + thisDreamText)
+
       })
       .catch(err => console.log("Err sending dream text to database from axios: ", err));
   }
@@ -82,9 +84,6 @@ export default class Microphone extends React.Component {
         // console.log("FINAL from inside recognition.onresult====>>>>" + finalTranscript);
         this.setDreamText(finalTranscript)
       }
-      // console.log("FINAL====>>>> outside the loop ====>: " + finalTranscript);
-
-
 
 
       document.getElementById('interim').innerHTML = interimTranscript
@@ -104,7 +103,6 @@ export default class Microphone extends React.Component {
         }
       }
     }
-    // console.log("FINAL====>>>>" + finalTranscript);
 
     //------------------------------------------------------
 
@@ -133,11 +131,6 @@ export default class Microphone extends React.Component {
         <button className='button is-primary'
           onClick={() => this.sendDreamTextToDb(this.state.dreamText)}>Log My Dream
         </button>
-
-        {/* <button className='button is-primary'
-          onSubmit={event => this.handleSubmit(event)}>
-          Log My Dream
-        </button> */}
 
         <h1>DREAM TEXT FROM STATE: {this.state.dreamText}</h1>
       </div>
