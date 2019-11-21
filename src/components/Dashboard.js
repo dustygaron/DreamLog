@@ -11,20 +11,20 @@ export default class Dashboard extends React.Component {
     // console.log(props.history)
 
     this.state = {
-      dreamLogFromDb: []
+      dreamLogFromDb: [],
     }
     // console.log('dreamLogFromDb===>>>' + this.state.dreamRoute);
-
     this.listDreamEntry = this.listDreamEntry.bind(this)
   }
 
   componentDidMount() {
-
     // console.log(`${process.env.REACT_APP_API_URL}/dreamRoute`)
     axios.get(`${process.env.REACT_APP_API_URL}/returnDream`)
       .then(res => {
         console.log('Success getting dreams from db===>>>', res)
-        this.setState({ dreamLogFromDb: res.data }, () => {
+        this.setState({
+          dreamLogFromDb: res.data
+        }, () => {
           // console.log(this.state, '=-=-=-=-=-=-')
         })
       })
@@ -44,15 +44,17 @@ export default class Dashboard extends React.Component {
   }
 
 
-
-  render() {
+  render(props) {
     return (
       <div>
 
         <div className="container">
           <div className="spacer has-text-centered">
             <h1 className='title'>Your Dashboard</h1>
-            <h2>Review your dream log.</h2>
+            <h2> Welcome to your dashboard, __
+              {/* {props.FullName} */}
+              !
+            </h2>
           </div>
           <table className="table is-striped is-narrow is-hoverable is-fullwidth">
             <thead>

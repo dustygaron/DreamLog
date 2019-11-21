@@ -5,9 +5,7 @@ import Home from './Home'
 import Signup from "../components/user-pages/Signup"
 import Login from '../components/user-pages/Login'
 import RecordMyDream from '../components/RecordMyDream'
-
 import Dashboard from '../components/Dashboard';
-// import CountriesList from '../components/CountriesList'
 import axios from 'axios'
 
 
@@ -20,7 +18,6 @@ export default class Nav extends React.Component {
     super();
     this.state = {
       currentUser: null,
-
     }
   }
 
@@ -60,11 +57,6 @@ export default class Nav extends React.Component {
             </div>
 
             <div id="navbarBasicExample" className="navbar-menu">
-              {/* <div className="navbar-start center-nav-text">
-                <NavLink to="/textToSpeech" className="navbar-item" >
-                  Record My Dream
-              </NavLink>
-              </div> */}
 
               <div className="navbar-end">
                 <div className="navbar-item">
@@ -96,30 +88,31 @@ export default class Nav extends React.Component {
           <Route exact path="/" component={Home} />
 
           <Route exact path="/record-my-dream" component={RecordMyDream} />
+
           <Route exact path="/dashboard" component={Dashboard} />
 
-          <Route exact path="/signup-page" render={() =>
-            <Signup
+          <Route exact path="/signup-page" render={(props) =>
+            <Signup {...props}
               currentUser={this.state.currentUser}
               onUserChange={userDoc => this.syncCurrentUSer(userDoc)}
             />
           } />
 
-          <Route exact path="/login-page" render={() =>
-            <Login
+          <Route exact path="/login-page" render={(props) =>
+            <Login {...props}
               currentUser={this.state.currentUser}
               onUserChange={userDoc => this.syncCurrentUSer(userDoc)}
             />
           } />
 
           {/* Login component */}
-          {/* <Route exact path="/login-page" component={Login} /> */}
+          {/* <Route exact path="/sign-up" component={Dashboard} /> */}
 
-          <Route exact path="/dashboard/:id"
+          {/* <Route exact path="/dashboard/:id"
             render={props => <Dashboard {...props}
               theUser={this.state.currentUser._id}
             />
-            } />
+            } /> */}
         </Switch>
 
       </div>

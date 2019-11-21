@@ -3,7 +3,6 @@ import axios from "axios";
 import { NavLink } from 'react-router-dom'
 
 
-
 export default class Signup extends React.Component {
     constructor(props) {
         super(props);
@@ -42,6 +41,7 @@ export default class Signup extends React.Component {
                 console.log("response is:", responseFromServer);
                 const { userDoc } = responseFromServer.data;
                 this.props.onUserChange(userDoc);
+                this.props.history.push('/dashboard')
             })
             // .catch(err => console.log("Err in signup: ", err));
             .catch(err =>{
@@ -54,19 +54,6 @@ export default class Signup extends React.Component {
         console.log("Do I have user in Signup: ", this.props.currentUser)
         const { fullName, email, password } = this.state;
         console.log("STATE: ", this.state);
-        if (this.props.currentUser) {
-            return (
-                <div>
-                    <h2> Welcome to your app, {this.props.currentUser.fullName} ! You're signed in! </h2>
-                </div>
-                //         // <Redirect to="/login-page" />
-                //         <Redirect to={Dashboard} />
-                // } else {
-                //     // alert('Sorry that E-mail has already been used!')
-                //     <Redirect to={Signup} />
-                // }
-            )
-        }
 
         return (
             <div className="columns is-centered">
@@ -138,17 +125,17 @@ export default class Signup extends React.Component {
 
                                     {/*----- SUBMIT -----*/}
                                     <div className="field">
-                                        <p className="control">
-                                            <p className="account-form">Already have an account?
+                                        <div className="control">
+                                            <div className="account-form">Already have an account?
                                                 <NavLink to="/login-page">
                                                     &nbsp; Log in
                                                 </NavLink>
-                                            </p>
+                                            </div>
 
                                             <button className="button is-primary">
                                                 Sign Up
                                             </button>
-                                        </p>
+                                        </div>
                                     </div>
 
                                 </form>
@@ -158,7 +145,7 @@ export default class Signup extends React.Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
 
 
 
