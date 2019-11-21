@@ -48,7 +48,6 @@ export default class Signup extends React.Component {
         const { fullName, email, password } = this.state;
         console.log("STATE: ", this.state);
 
-
         return (
             <div className="columns is-centered">
                 <div className="column is-5-tablet is-4-desktop is-3-widescreen">
@@ -135,11 +134,12 @@ export default class Signup extends React.Component {
                                 </form>
                                 {/* if the message is not null (basically if there's a message) then show it in this <div> tag */}
                                 {this.state.message && <div> {this.state.message} </div>}
+
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
 
 
 

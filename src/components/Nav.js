@@ -5,11 +5,9 @@ import Home from './Home'
 import Signup from "../components/user-pages/Signup"
 import Login from '../components/user-pages/Login'
 import RecordMyDream from '../components/RecordMyDream'
-
 import Dashboard from '../components/Dashboard';
-// import CountriesList from '../components/CountriesList'
 import axios from 'axios'
-// import Personal from '../components/Personal'
+
 
 
 
@@ -20,7 +18,6 @@ export default class Nav extends React.Component {
     super();
     this.state = {
       currentUser: null,
-
     }
   }
 
@@ -60,11 +57,6 @@ export default class Nav extends React.Component {
             </div>
 
             <div id="navbarBasicExample" className="navbar-menu">
-              {/* <div className="navbar-start center-nav-text">
-                <NavLink to="/textToSpeech" className="navbar-item" >
-                  Record My Dream
-              </NavLink>
-              </div> */}
 
               <div className="navbar-end">
                 <div className="navbar-item">
@@ -98,7 +90,6 @@ export default class Nav extends React.Component {
           <Route exact path="/record-my-dream" component={RecordMyDream} />
 
           <Route exact path="/dashboard" component={Dashboard} />
-
 
           <Route exact path="/signup-page" render={(props) =>
             <Signup {...props}

@@ -36,8 +36,9 @@ export default class Login extends React.Component {
                 console.log("response is:", responseFromServer);
                 const { userDoc } = responseFromServer.data;
                 this.props.onUserChange(userDoc);
-                // alert("You are logged in.")
+                console.log("You are logged in.", userDoc)
                 this.props.history.push('/dashboard')
+                console.log('CURRENT=====>>>>>' + userDoc.fullName);
             })
             .catch((error) => {
                 // Error
@@ -59,6 +60,7 @@ export default class Login extends React.Component {
                 }
                 console.log(error.config);
             })
+
     }
 
 
