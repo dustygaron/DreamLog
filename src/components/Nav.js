@@ -9,7 +9,7 @@ import RecordMyDream from '../components/RecordMyDream'
 import Dashboard from '../components/Dashboard';
 // import CountriesList from '../components/CountriesList'
 import axios from 'axios'
-import Personal from '../components/Personal'
+
 
 
 
@@ -115,8 +115,6 @@ export default class Nav extends React.Component {
           {/* Login component */}
           {/* <Route exact path="/login-page" component={Login} /> */}
 
-          {/* <Route exact path="/bleh" component={CountriesList} />*/}
-          <Route exact path="/personal" component={Personal} />
           <Route exact path="/dashboard/:id"
             render={props => <Dashboard {...props}
               theUser={this.state.currentUser._id}
