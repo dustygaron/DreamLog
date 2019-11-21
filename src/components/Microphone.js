@@ -31,30 +31,6 @@ export default class Microphone extends React.Component {
     }, this.handleListen)
   }
 
-  // Set recorded dream text to state
-  
-  // setDreamText =(recordedDreamText) => {
-  //     let savedText;
-  //     this.setState({  dreamText: recordedDreamText }, () => {
-  //       savedText = this.state.dreamText;
-  //     })
-  //     // let savedText;
-  //     // this.setState({  dreamText: recordedDreamText }, () => {
-  //     //   savedText = this.state.dreamText;
-  //     // })
-  //     console.log("RECORDED DREAM TEXT ===>>>" + recordedDreamText)
-  //     console.log("THIS IS state.dreamText ===>>>" + this.state.dreamText)
-  //     console.log("THIS IS savedText %%%%%===>>>" + savedText)
-      
-  //     axios.post(`${process.env.REACT_APP_API_URL}/dashboard`, { savedText }, { withCredentials:true })
-  //     .then(themWords => {
-
-  //       console.log("=-=-=-=-=-=-=-=-=-=-=", themWords)
-  //       console.log("=-=-=-=-=-=-=-=-=-=-=blahhhhhhhh", this.state.savedText)
-
-  //     })
-  //   .catch(err => console.log("Err in axios post: ", err));
-  // }
 
 
   setDreamText(recordedDreamText) {
@@ -116,16 +92,7 @@ export default class Microphone extends React.Component {
 
       document.getElementById('interim').innerHTML = interimTranscript
       document.getElementById('final').innerHTML = finalTranscript
-      // console.log(finalTranscript)
-      // this.setState({
-      //   dreamText: finalTranscript
-      // }, () => {
-      //   console.log("tell me why god....", this.state.dreamText)
-      // })
-      
-      // this.setState({dreamText: finalTranscript}, ()=>{
-      //   console.log("tell me why god....", this.state.dreamText)
-      // })
+    
      
       //-------COMMANDS------------------------------------
 
@@ -170,14 +137,6 @@ export default class Microphone extends React.Component {
         <button className='button is-primary'
           onClick={() => this.sendDreamTextToDb(this.state.dreamText)}>Log My Dream
         </button>
-
-        {/* <button className='button is-primary'
-          // onSubmit={event => this.handleSubmit(event)
-          >
-
-          Log My Dream
-
-        </button> */}
 
         <h1>DREAM TEXT FROM STATE: {this.state.dreamText}</h1>
       </div>
