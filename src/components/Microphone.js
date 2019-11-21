@@ -18,7 +18,7 @@ export default class Microphone extends React.Component {
     super()
     this.state = {
       listening: false,
-      dreamText: ''
+      dreamText: '',
     }
     this.toggleListen = this.toggleListen.bind(this)
     this.handleListen = this.handleListen.bind(this)
@@ -31,7 +31,8 @@ export default class Microphone extends React.Component {
     }, this.handleListen)
   }
 
-  // Set recorded dream text to state
+
+
   setDreamText(recordedDreamText) {
     this.setState({
       dreamText: recordedDreamText
@@ -42,6 +43,7 @@ export default class Microphone extends React.Component {
   }
 
   sendDreamTextToDb = (dreamEntry) => {
+    console.log("text got pu$$$$$$hed ===========================>")
     axios.post(`${process.env.REACT_APP_API_URL}/dreamRoute`, { dreamEntry }, { withCredentials: true })
       .then(thisDreamText => {
         console.log("This dream text in axios ===>>>" + thisDreamText)
@@ -49,6 +51,8 @@ export default class Microphone extends React.Component {
       })
       .catch(err => console.log("Err sending dream text to database from axios: ", err));
   }
+
+
 
 
   handleListen() {
@@ -88,6 +92,8 @@ export default class Microphone extends React.Component {
 
       document.getElementById('interim').innerHTML = interimTranscript
       document.getElementById('final').innerHTML = finalTranscript
+    
+     
       //-------COMMANDS------------------------------------
 
       const transcriptArr = finalTranscript.split(' ')
