@@ -1,8 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom'
-// import Dashboard from '../Dashboard';
-//BrowserRouter as Router,
+import { Redirect, NavLink } from 'react-router-dom'
+
 
 export default class Login extends React.Component {
     constructor() {
@@ -125,9 +124,15 @@ export default class Login extends React.Component {
                                         {/*----- SUBMIT -----*/}
                                         <div className="field">
                                             <p className="control">
+                                                <p className="account-form">Need an account?
+                                                <NavLink to="/signup-page">
+                                                        &nbsp; Sign Up
+                                                </NavLink>
+                                                </p>
+
                                                 <button className="button is-primary">
                                                     Login
-                                </button>
+                                                </button>
                                             </p>
                                         </div>
 

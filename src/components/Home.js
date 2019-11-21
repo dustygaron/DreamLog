@@ -1,5 +1,6 @@
 import React from "react"
 import placeholderImg from '../img/placeholder.png'
+import { NavLink } from 'react-router-dom'
 
 export default class Home extends React.Component {
 
@@ -63,7 +64,12 @@ export default class Home extends React.Component {
             <h2 className="subtitle">
               Let's get started! It only takes a second to <strong>create your account</strong>.
              </h2>
-            <button className="button">Create your Account</button>
+
+            <p className="account-form">
+              <NavLink to="/signup-page">
+                <button className="button">Create your Account</button>
+              </NavLink>
+            </p>
           </div>
         </section>
 

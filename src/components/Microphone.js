@@ -116,23 +116,22 @@ export default class Microphone extends React.Component {
 
   render() {
     return (
-      <div style={container}>
+      <div className='mic-container'>
         <button id='microphone-btn'
           className="button"
-          style={button}
           onClick={this.toggleListen}>
           <i className="fas fa-microphone"></i>
           &nbsp;
           Toggle Microphone
           </button>
-        <div id='interim' style={interim}></div>
-        <div id='final' style={final}></div>
+        <div id='interim'></div>
+        <div id='final'></div>
 
         <button className='button is-primary'
           onClick={() => this.sendDreamTextToDb(this.state.dreamText)}>Log My Dream
         </button>
 
-        <h1>DREAM TEXT FROM STATE: {this.state.dreamText}</h1>
+        {/* <h1>DREAM TEXT FROM STATE: {this.state.dreamText}</h1> */}
       </div>
     )
   }
@@ -143,27 +142,3 @@ export default class Microphone extends React.Component {
 
 //-------CSS------------------------------------
 
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    textAlign: 'center'
-  },
-  interim: {
-    color: 'gray',
-    borderBottom: '#ccc 1px solid',
-    padding: '1em',
-    margin: '1em',
-    width: '700px'
-  },
-  final: {
-    color: 'black',
-    border: '#ccc 1px solid',
-    padding: '1em',
-    margin: '1em',
-    width: '700px'
-  }
-}
-
-const { container, button, interim, final } = styles

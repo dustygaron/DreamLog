@@ -68,12 +68,16 @@ export default class Nav extends React.Component {
 
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <NavLink to="/record-my-dream" className="navbar-item top-nav-item" >
-                    Record My Dream
+                  {this.state.currentUser &&
+                    <NavLink to="/record-my-dream" className="navbar-item top-nav-item" >
+                      Record My Dream
                  </NavLink>
-                  <NavLink to="/dashboard" className="navbar-item top-nav-item" >
-                    Dashboard
+                  }
+                  {this.state.currentUser &&
+                    <NavLink to="/dashboard" className="navbar-item top-nav-item" >
+                      Dashboard
                  </NavLink>
+                  }
                   <div className="buttons">
                     <NavLink to="/signup-page" className="button is-primary">
                       <strong>Sign up</strong>

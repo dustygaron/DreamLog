@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
-// import { BrowserRouter as Router, Redirect } from 'react-router-dom'
-// import Dashboard from "../Dashboard";
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -81,10 +80,10 @@ export default class Signup extends React.Component {
                                                 onChange={event => this.genericSync(event)}
                                                 type='text'
                                                 name='fullName'
-                                                placeholder='Full Name'
+                                                placeholder='Your Name'
                                             />
                                             <span className="icon is-small is-left">
-                                                <i className="fa fa-envelope"></i>
+                                                <i className="fa fa-user"></i>
                                             </span>
                                             <span className="icon is-small is-right">
                                                 <i className="fa fa-check"></i>
@@ -133,11 +132,18 @@ export default class Signup extends React.Component {
                                     {/*----- SUBMIT -----*/}
                                     <div className="field">
                                         <p className="control">
+                                            <p className="account-form">Already have an account?
+                                                <NavLink to="/login-page">
+                                                    &nbsp; Log in
+                                                </NavLink>
+                                            </p>
+
                                             <button className="button is-primary">
                                                 Sign Up
                                             </button>
                                         </p>
                                     </div>
+
                                 </form>
                                 {/* if the message is not null (basically if there's a message) then show it in this <div> tag */}
                                 {this.state.message && <div> {this.state.message} </div>}

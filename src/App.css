@@ -46,7 +46,7 @@ table {
   justify-content: center !important;
 }
 
-.center-nav-text > * {
+.center-nav-text>* {
   margin: 0 1rem;
 }
 
@@ -83,6 +83,34 @@ a.navbar-item:hover {
 /* ------------------*/
 /* Microphone
 /* ----------------- */
+
+.mic-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#interim {
+  color: gray;
+  border-bottom: 1px solid #eee;
+  padding: 1em;
+  margin: 1em;
+  width: 700px;
+}
+
+#final {
+  color: black;
+  background: #eee;
+  border: 1px solid #eee;
+  padding: 1em;
+  margin: 1em;
+  width: 700px;
+}
+
+
+
+
 /* Make home bg purple gradient */
 /* .hero.is-primary {
   background: linear-gradient(to top right, #524ad0 10%, #D099FA) !important;
@@ -116,13 +144,11 @@ a.navbar-item:hover {
 } */
 
 .dark-purple-gradient {
-  background-image: linear-gradient(
-    90deg,
-    #20123a 20%,
-    #281346 40%,
-    #271a4c 60%,
-    #2f1859 80%
-  ) !important;
+  background-image: linear-gradient(90deg,
+      #20123a 20%,
+      #281346 40%,
+      #271a4c 60%,
+      #2f1859 80%) !important;
 }
 
 .dark-purple-gradient h1,
@@ -169,4 +195,9 @@ table {
 
 .microphone-btn {
   margin-bottom: 50px;
+}
+
+/* Login/Signup form */
+.account-form {
+  padding: 0 0 10px 0;
 }

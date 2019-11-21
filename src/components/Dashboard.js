@@ -13,26 +13,34 @@ export default class Dashboard extends React.Component {
     this.state = {
       dreamLogFromDb: []
     }
-    console.log('dreamLogFromDb===>>>' + this.state.dreamRoute);
+    // console.log('dreamLogFromDb===>>>' + this.state.dreamRoute);
 
     this.listDreamEntry = this.listDreamEntry.bind(this)
   }
 
   componentDidMount() {
-    axios.get(`${process.env.REACT_APP_API_URL}/dreamRoute`)
+
+    // console.log(`${process.env.REACT_APP_API_URL}/dreamRoute`)
+    axios.get(`${process.env.REACT_APP_API_URL}/returnDream`)
       .then(res => {
-        this.setState({ dreamLogFromDb: [...res.data] })
-        console.log('Success getting dreams from db===>>>', this.state.dreamLogFromDb)
+        console.log('Success getting dreams from db===>>>', res)
+        this.setState({ dreamLogFromDb: res.data }, () => {
+          // console.log(this.state, '=-=-=-=-=-=-')
+        })
       })
       .catch(err => {
         console.log('Error retrieving dreams from db===>>>', err, this.res)
       })
   }
 
-  listDreamEntry() {
-    return this.state.dreamLogFromDb.map((data, i) => {
-      return <DreamEntry obj={data} key={i} name={this.state.dreamLogFromDb.dreamText} />
-    })
+  listDreamEntry = () => {
+    console.log('shpwing the dreams')
+    if (this.state.dreamLogFromDb.length)
+      return this.state.dreamLogFromDb.map((data, i) => {
+        return (
+          <DreamEntry obj={data} key={i} />
+        )
+      })
   }
 
 
@@ -42,7 +50,11 @@ export default class Dashboard extends React.Component {
       <div>
 
         <div className="container">
-          <table>
+          <div className="spacer has-text-centered">
+            <h1 className='title'>Your Dashboard</h1>
+            <h2>Review your dream log.</h2>
+          </div>
+          <table className="table is-striped is-narrow is-hoverable is-fullwidth">
             <thead>
               <tr>
                 <td>Dream</td>
@@ -58,10 +70,7 @@ export default class Dashboard extends React.Component {
 
 
         {/* <div className='container'>
-          <div className="spacer has-text-centered">
-            <h1 className='title'>Your Dashboard</h1>
-            <h2>Review your dream log.</h2>
-          </div>
+          
         </div>
 
         <section className="container">
