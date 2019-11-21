@@ -20,6 +20,12 @@ export default class Login extends React.Component {
         this.setState({ [name]: value });
     }
 
+    //placed inside catch of sign in
+    displayMessageErr(){
+        this.setState({ message: "Invalid credentials!"})
+    }
+
+
     handleSubmit(event) {
         // console.log("submitting form");
         event.preventDefault();
@@ -41,6 +47,7 @@ export default class Login extends React.Component {
                 console.log('CURRENT=====>>>>>' + userDoc.fullName);
             })
             .catch((error) => {
+                this.displayMessageErr()
                 // Error
                 if (error.response) {
                     // The request was made and the server responded with a status code
@@ -132,7 +139,7 @@ export default class Login extends React.Component {
                                         </div>
 
                                     </form>
-                                    {this.state.message && <div> {this.state.message} </div>}
+                                    {this.state.message && <div style={{color:"red"}}> {this.state.message} </div>}
                                 </div>
                             </div>
                         </div>
