@@ -20,6 +20,9 @@ export default class Signup extends React.Component {
         const { name, value } = event.target;
         this.setState({ [name]: value });
     }
+    displayMessageErr(){
+        this.setState({ message: "This account is not valid"})
+    }
 
     handleSubmit(event) {
         // console.log("=====>" + this.state.fullName, this.state.email, this.state.password, this.state.message);
@@ -40,7 +43,11 @@ export default class Signup extends React.Component {
                 const { userDoc } = responseFromServer.data;
                 this.props.onUserChange(userDoc);
             })
-            .catch(err => console.log("Err in signup: ", err));
+            // .catch(err => console.log("Err in signup: ", err));
+            .catch(err =>{
+                console.log("Err in signup: ", err)
+                this.displayMessageErr()
+            });
     }
 
     render() {
@@ -146,7 +153,7 @@ export default class Signup extends React.Component {
 
                                 </form>
                                 {/* if the message is not null (basically if there's a message) then show it in this <div> tag */}
-                                {this.state.message && <div> {this.state.message} </div>}
+                                {this.state.message && <div style={{color:"red"}}> {this.state.message} </div>}
                             </div>
                         </div>
                     </div>
