@@ -52,7 +52,9 @@ export default class Dashboard extends React.Component {
         <div className="container">
           <div className="spacer has-text-centered">
             <h1 className='title'>Your Dashboard</h1>
-            <h2>Review your dream log.</h2>
+            <h2> Welcome to your dashboard, YOUR NAME HERE
+              {/* {this.props.currentUser.fullName}!  */}
+            </h2>
           </div>
           <table className="table is-striped is-narrow is-hoverable is-fullwidth">
             <thead>

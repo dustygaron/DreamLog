@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Redirect, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 
 export default class Login extends React.Component {
@@ -36,7 +36,8 @@ export default class Login extends React.Component {
                 console.log("response is:", responseFromServer);
                 const { userDoc } = responseFromServer.data;
                 this.props.onUserChange(userDoc);
-                alert("You are logged in.")
+                // alert("You are logged in.")
+                this.props.history.push('/dashboard')
             })
             .catch((error) => {
                 // Error
@@ -63,14 +64,6 @@ export default class Login extends React.Component {
 
     render() {
         const { email, password } = this.state
-
-        if (this.props.currentUser === null) {
-            console.log('please input information')
-        } else if (this.props.currentUser) {
-            return (
-                <Redirect to={`/dashboard`} />
-            )
-        }
 
 
         return (
@@ -123,17 +116,17 @@ export default class Login extends React.Component {
 
                                         {/*----- SUBMIT -----*/}
                                         <div className="field">
-                                            <p className="control">
-                                                <p className="account-form">Need an account?
+                                            <div className="control">
+                                                <div className="account-form">Need an account?
                                                 <NavLink to="/signup-page">
                                                         &nbsp; Sign Up
                                                 </NavLink>
-                                                </p>
+                                                </div>
 
                                                 <button className="button is-primary">
                                                     Login
                                                 </button>
-                                            </p>
+                                            </div>
                                         </div>
 
                                     </form>

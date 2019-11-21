@@ -9,7 +9,7 @@ import RecordMyDream from '../components/RecordMyDream'
 import Dashboard from '../components/Dashboard';
 // import CountriesList from '../components/CountriesList'
 import axios from 'axios'
-import Personal from '../components/Personal'
+// import Personal from '../components/Personal'
 
 
 
@@ -96,32 +96,32 @@ export default class Nav extends React.Component {
           <Route exact path="/" component={Home} />
 
           <Route exact path="/record-my-dream" component={RecordMyDream} />
+
           <Route exact path="/dashboard" component={Dashboard} />
 
-          <Route exact path="/signup-page" render={() =>
-            <Signup
+
+          <Route exact path="/signup-page" render={(props) =>
+            <Signup {...props}
               currentUser={this.state.currentUser}
               onUserChange={userDoc => this.syncCurrentUSer(userDoc)}
             />
           } />
 
-          <Route exact path="/login-page" render={() =>
-            <Login
+          <Route exact path="/login-page" render={(props) =>
+            <Login {...props}
               currentUser={this.state.currentUser}
               onUserChange={userDoc => this.syncCurrentUSer(userDoc)}
             />
           } />
 
           {/* Login component */}
-          {/* <Route exact path="/login-page" component={Login} /> */}
+          {/* <Route exact path="/sign-up" component={Dashboard} /> */}
 
-          {/* <Route exact path="/bleh" component={CountriesList} />*/}
-          <Route exact path="/personal" component={Personal} />
-          <Route exact path="/dashboard/:id"
+          {/* <Route exact path="/dashboard/:id"
             render={props => <Dashboard {...props}
               theUser={this.state.currentUser._id}
             />
-            } />
+            } /> */}
         </Switch>
 
       </div>
