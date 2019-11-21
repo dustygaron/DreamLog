@@ -19,7 +19,8 @@ class DreamEntry extends React.Component {
     return (
 
       <tr>
-        <td>  {this.props.obj.dreamText} </td>
+        <td> {this.props.obj.dreamName} </td>
+        <td> {this.props.obj.dreamText} </td>
         <td><button className='button'>Edit</button></td>
         <td><button onClick={this.delete} className="btn btn-danger">Delete</button></td>
       </tr>

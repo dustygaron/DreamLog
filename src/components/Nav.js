@@ -60,24 +60,31 @@ export default class Nav extends React.Component {
 
               <div className="navbar-end">
                 <div className="navbar-item">
+
                   {this.state.currentUser &&
                     <NavLink to="/record-my-dream" className="navbar-item top-nav-item" >
                       Record My Dream
-                 </NavLink>
+                    </NavLink>
                   }
+
                   {this.state.currentUser &&
                     <NavLink to="/dashboard" className="navbar-item top-nav-item" >
                       Dashboard
-                 </NavLink>
+                    </NavLink>
                   }
+
                   <div className="buttons">
+
                     <NavLink to="/signup-page" className="button is-primary">
                       <strong>Sign up</strong>
                     </NavLink>
+
                     <NavLink to="/login-page" className="button is-light ">
                       Log in
-                  </NavLink>
+                    </NavLink>
+
                   </div>
+
                 </div>
               </div>
             </div>
@@ -87,9 +94,26 @@ export default class Nav extends React.Component {
         <Switch>
           <Route exact path="/" component={Home} />
 
-          <Route exact path="/record-my-dream" component={RecordMyDream} />
+          {/* <Route exact path="/record-my-dream" component={RecordMyDream} /> */}
 
-          <Route exact path="/dashboard" component={Dashboard} />
+          {/* <Route exact path="/dashboard" component={Dashboard} /> */}
+
+          <Route exact path="/record-my-dream" render={(props) =>
+            <RecordMyDream {...props}
+              currentUser={this.state.currentUser}
+              onUserChange={userDoc => this.syncCurrentUSer(userDoc)}
+            />
+          } />
+
+
+
+          <Route exact path="/dashboard" render={(props) =>
+            <Dashboard {...props}
+              currentUser={this.state.currentUser}
+              onUserChange={userDoc => this.syncCurrentUSer(userDoc)}
+            />
+          } />
+
 
           <Route exact path="/signup-page" render={(props) =>
             <Signup {...props}

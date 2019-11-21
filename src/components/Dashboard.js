@@ -34,7 +34,7 @@ export default class Dashboard extends React.Component {
   }
 
   listDreamEntry = () => {
-    console.log('shpwing the dreams')
+    console.log('Showing the dreams ===>>>')
     if (this.state.dreamLogFromDb.length)
       return this.state.dreamLogFromDb.map((data, i) => {
         return (
