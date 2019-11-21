@@ -1,6 +1,7 @@
 // 'use strict'
 import React from "react"
 import axios from "axios"
+import Logout from "../components/user-pages/Logout"
 //-------SPEECH RECOGNITION-------------------
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
@@ -137,6 +138,7 @@ export default class Microphone extends React.Component {
           onClick={() => this.sendDreamTextToDb(this.state.dreamText)}>Log My Dream
         </button>
 
+<Logout />
         {/* <h1>DREAM TEXT FROM STATE: {this.state.dreamText}</h1> */}
       </div>
     )
