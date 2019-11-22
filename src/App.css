@@ -24,14 +24,6 @@ html {
   color: #4a4a4a !important;
 }
 
-table {
-  margin: 0 auto;
-}
-
-.table-header {
-  background: #dbdbdb;
-}
-
 .form-style {
   padding: 3rem;
   margin-top: 3rem;
@@ -92,8 +84,8 @@ a.navbar-item:hover {
 }
 
 #interim {
-  color: gray;
-  border-bottom: 1px solid #eee;
+  /* color: gray;
+  border-bottom: 1px solid #eee; */
   padding: 1em;
   margin: 1em;
   width: 700px;
@@ -103,11 +95,17 @@ a.navbar-item:hover {
   color: black;
   background: #eee;
   border: 1px solid #eee;
-  padding: 1em;
-  margin: 1em;
+   padding: 50px;
+  /*margin: 1em; */
   width: 700px;
 }
 
+.success {
+  padding: 20px 0;
+  font-style: italic;
+  font-weight: bold;
+
+}
 
 
 
@@ -190,12 +188,28 @@ a.navbar-item:hover {
 
 /* Dashboard */
 table {
-  border: 1px solid #eee;
+  /* border: 1px solid #eee; */
+}
+
+.table-header,
+.td-crud-buttons {
+  background: #dbdbdb !important;
+}
+
+.table .td-dream-name {
+  width: 200px;
+}
+
+.table .td-dream-name,
+.table .td-dream-text {
+  font-weight: bold;
 }
 
 .microphone-btn {
   margin-bottom: 50px;
 }
+
+
 
 /* Login/Signup form */
 .account-form {

@@ -13,7 +13,10 @@ class Logout extends React.Component{
     }
 
 
-
+// below componentDidMount
+handleLogout(){
+    
+}
 
 
 

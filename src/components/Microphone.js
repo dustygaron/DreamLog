@@ -1,9 +1,9 @@
 // 'use strict'
 import React from "react"
 import axios from "axios"
-import Logout from "../components/user-pages/Logout"
-//-------SPEECH RECOGNITION-------------------
 
+
+//-------SPEECH RECOGNITION-------------------
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 const recognition = new SpeechRecognition()
 
@@ -20,43 +20,48 @@ export default class Microphone extends React.Component {
     this.state = {
       listening: false,
       dreamText: '',
+      dreamName: '',
+      success: ''
     }
     this.toggleListen = this.toggleListen.bind(this)
     this.handleListen = this.handleListen.bind(this)
     this.setDreamText = this.setDreamText.bind(this)
   }
 
-  toggleListen() {
+  toggleListen = () => {
     this.setState({
       listening: !this.state.listening
     }, this.handleListen)
   }
 
+  genericSync = (event) => {
+    // console.log("what is: ", event.target.value)
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
 
 
-  setDreamText(recordedDreamText) {
+  //--- SET RECORDING TO STATE ----------------------------------------
+  setDreamText = (recordedDreamText) => {
     this.setState({
       dreamText: recordedDreamText
     })
-    console.log("RECORDED DREAM TEXT ===>>>" + recordedDreamText)
-    console.log("THIS IS state.dreamText ===>>>" + this.state.dreamText)
-
+    // console.log("RECORDED DREAM TEXT ===>>>" + recordedDreamText)
+    // console.log("THIS IS state.dreamText ===>>>" + this.state.dreamText)
   }
 
+  //--- SEND DREAM TO DB ----------------------------------------------
   sendDreamTextToDb = (dreamEntry) => {
-    console.log("text got pu$$$$$$hed ===========================>")
     axios.post(`${process.env.REACT_APP_API_URL}/dreamRoute`, { dreamEntry }, { withCredentials: true })
       .then(thisDreamText => {
         console.log("This dream text in axios ===>>>" + thisDreamText)
-
       })
       .catch(err => console.log("Err sending dream text to database from axios: ", err));
   }
 
 
-
-
-  handleListen() {
+  //--- HANDLE LISTEN ---------------------------------------------------
+  handleListen = () => {
     console.log('listening?', this.state.listening)
 
     if (this.state.listening) {
@@ -90,13 +95,11 @@ export default class Microphone extends React.Component {
         this.setDreamText(finalTranscript)
       }
 
-
       document.getElementById('interim').innerHTML = interimTranscript
       document.getElementById('final').innerHTML = finalTranscript
-    
-     
-      //-------COMMANDS------------------------------------
 
+
+      //--- COMMANDS------------------------------------
       const transcriptArr = finalTranscript.split(' ')
       const stopCmd = transcriptArr.slice(-3, -1)
       console.log('stopCmd', stopCmd)
@@ -111,42 +114,94 @@ export default class Microphone extends React.Component {
       }
     }
 
-    //------------------------------------------------------
-
     recognition.onerror = event => {
       console.log("Error occurred in recognition: " + event.error)
     }
   }
 
 
+  //--- HANDLE SUBMIT --------------------------------------------
+  handleSubmit(event) {
+    console.log("submitting form");
+    event.preventDefault();
 
+    axios.post(
+      `${process.env.REACT_APP_API_URL}/dreamRoute`,
+      this.state,
+      { withCredentials: true }
+    )
+      .then(responseFromServer => {
+        console.log("response from handle submit is~~~>>>:", responseFromServer);
+      })
+      .then(this.clearState(this.state))
+      .catch((error) => {
+        console.log('error from handle submit', error);
+      })
+  }
 
+  clearState = (state) => {
+    this.setState({
+      dreamText: '',
+      dreamName: '',
+      success: 'Success! Your dream has been logged.'
+    })
+  }
+
+  //--- RENDER -----------------------------------------------
   render() {
+
+    const { dreamName } = this.state
+
     return (
-      <div className='mic-container'>
-        <button id='microphone-btn'
-          className="button"
-          onClick={this.toggleListen}>
-          <i className="fas fa-microphone"></i>
-          &nbsp;
-          Toggle Microphone
+      <div>
+
+        <div className='mic-container microphone card is-rounded form-style' >
+          <h2 className="title">Make Your Recording</h2>
+          <button id='microphone-btn'
+            className="button"
+            onClick={this.toggleListen}>
+            <i className="fas fa-microphone"></i>
+            &nbsp;
+            Toggle Microphone
           </button>
-        <div id='interim'></div>
-        <div id='final'></div>
+          <div id='interim'></div>
 
-        <button className='button is-primary'
-          onClick={() => this.sendDreamTextToDb(this.state.dreamText)}>Log My Dream
-        </button>
 
-<Logout />
-        {/* <h1>DREAM TEXT FROM STATE: {this.state.dreamText}</h1> */}
-      </div>
+          <div className="has-text-left">
+            <p>Final Text:</p>
+            <div id='final'></div>
+          </div>
+
+        </div>
+
+        <div className='card is-rounded form-style' >
+          <form onSubmit={event => this.handleSubmit(event)}>
+
+            <h2 className="title">Add Dream Details</h2>
+
+
+            <div className="field">
+              <label className="label">Dream Name</label>
+              <div className="control">
+                <input
+                  className="input"
+                  value={dreamName}
+                  onChange={event => this.genericSync(event)}
+                  type='text'
+                  name='dreamName'
+                />
+              </div>
+            </div>
+
+            <button className="button">Log my Dream</button>
+          </form>
+
+          <p className="success">{this.state.success}</p>
+          {/* <h1>DREAM TEXT FROM STATE: {this.state.dreamText}</h1> */}
+        </div >
+
+      </div >
     )
   }
 }
-
-
-
-
-//-------CSS------------------------------------
 
