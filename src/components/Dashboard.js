@@ -34,7 +34,7 @@ export default class Dashboard extends React.Component {
   }
 
   listDreamEntry = () => {
-    console.log('Showing the dreams ===>>>')
+    // console.log('Showing the dreams ===>>>')
     if (this.state.dreamLogFromDb.length)
       return this.state.dreamLogFromDb.map((data, i) => {
         return (
@@ -42,6 +42,8 @@ export default class Dashboard extends React.Component {
         )
       })
   }
+
+
 
 
   render(props) {
@@ -69,49 +71,9 @@ export default class Dashboard extends React.Component {
               {this.listDreamEntry()}
             </tbody>
           </table>
+
         </div>
 
-
-        {/* <div className='container'>
-          
-        </div>
-
-        <section className="container">
-
-          <table className="table is-striped is-narrow is-hoverable is-fullwidth">
-            <thead>
-              <tr className="table-header">
-                <th>Dream Name</th>
-                <th><abbr title="Position">Date</abbr></th>
-                <th>Day of Week</th>
-                <th><abbr title="Position">Feeling</abbr></th>
-                <th>Time to Bed</th>
-                <th>Time Awake </th>
-              </tr>
-            </thead>
-
-            <DreamEntry
-              name="Wicked Dreams"
-              date="November 18, 2019"
-              day="Monday"
-              mood="🤔"
-              toSleep="10:30 pm"
-              wakeUp="7:30 am"
-            />
-
-            <DreamEntry
-              name="Rainy Saturday"
-              date="November 23, 2019"
-              day="Monday"
-              mood="😊"
-              toSleep="10:00 pm"
-              wakeUp="9:15 am"
-            />
-
-          </table>
-
-
-        </section> */}
 
       </div>
     )
