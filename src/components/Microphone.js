@@ -167,7 +167,7 @@ export default class Microphone extends React.Component {
           <div id='interim'></div>
 
 
-          <div className="has-text-left">
+          <div className="has-text-left textarea">
             <p>Final Text:</p>
             <div id='final'></div>
           </div>
