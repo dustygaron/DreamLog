@@ -150,9 +150,6 @@ export default class Microphone extends React.Component {
   }
 
 
-  //--- MIC BUTTON ------------------------------------------
-
-
 
   //--- RENDER -----------------------------------------------
   render() {
@@ -167,19 +164,18 @@ export default class Microphone extends React.Component {
           <button className={this.state.condition ? "mic-button toggled" : "button"}
             toggleClassName={this.toggleListen}
             id='microphone-btn'
-            className="button"
             onClick={this.toggleListen}>
             <i className="fas fa-microphone"></i>
             &nbsp;
             Toggle Microphone
           </button>
 
-          <div
+          {/* <div
             onClick={this.handleClick}
             className={this.state.condition ? "mic-button toggled" : "mic-button"}
           >
             <span>Recording</span>
-          </div>
+          </div> */}
 
           <div id='interim'></div>
 
