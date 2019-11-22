@@ -21,7 +21,8 @@ export default class Microphone extends React.Component {
       listening: false,
       dreamText: '',
       dreamName: '',
-      success: ''
+      success: '',
+      condition: false
     }
     this.toggleListen = this.toggleListen.bind(this)
     this.handleListen = this.handleListen.bind(this)
@@ -30,7 +31,8 @@ export default class Microphone extends React.Component {
 
   toggleListen = () => {
     this.setState({
-      listening: !this.state.listening
+      listening: !this.state.listening,
+      condition: !this.state.condition
     }, this.handleListen)
   }
 
@@ -147,6 +149,11 @@ export default class Microphone extends React.Component {
     })
   }
 
+
+  //--- MIC BUTTON ------------------------------------------
+
+
+
   //--- RENDER -----------------------------------------------
   render() {
 
@@ -157,13 +164,23 @@ export default class Microphone extends React.Component {
 
         <div className='mic-container microphone card is-rounded form-style' >
           <h2 className="title">Make Your Recording</h2>
-          <button id='microphone-btn'
+          <button className={this.state.condition ? "mic-button toggled" : "button"}
+            toggleClassName={this.toggleListen}
+            id='microphone-btn'
             className="button"
             onClick={this.toggleListen}>
             <i className="fas fa-microphone"></i>
             &nbsp;
             Toggle Microphone
           </button>
+
+          <div
+            onClick={this.handleClick}
+            className={this.state.condition ? "mic-button toggled" : "mic-button"}
+          >
+            <span>Recording</span>
+          </div>
+
           <div id='interim'></div>
 
 
