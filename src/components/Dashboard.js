@@ -56,12 +56,13 @@ export default class Dashboard extends React.Component {
               !
             </h2>
           </div>
-          <table className="table is-striped is-narrow is-hoverable is-fullwidth">
-            <thead>
-              <tr>
-                <td>Dream</td>
-                <td>Date</td>
-                <td>Day of Week</td>
+          <table className=" card table is-striped is-hoverable is-fullwidth">
+            <thead className="table-header">
+              <tr className="table-header">
+                <td className="td-dream-name">Dream Name</td>
+                <td className="td-dream-text">Dream Text</td>
+                <td className="td-crud-buttons"></td>
+                <td className="td-crud-buttons"></td>
               </tr>
             </thead>
             <tbody>

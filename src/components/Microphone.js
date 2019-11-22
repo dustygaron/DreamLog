@@ -1,9 +1,9 @@
 // 'use strict'
 import React from "react"
 import axios from "axios"
-import Logout from "../components/user-pages/Logout"
-//-------SPEECH RECOGNITION-------------------
 
+
+//-------SPEECH RECOGNITION-------------------
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 const recognition = new SpeechRecognition()
 
@@ -20,7 +20,8 @@ export default class Microphone extends React.Component {
     this.state = {
       listening: false,
       dreamText: '',
-      dreamName: ''
+      dreamName: '',
+      success: ''
     }
     this.toggleListen = this.toggleListen.bind(this)
     this.handleListen = this.handleListen.bind(this)
@@ -132,9 +133,18 @@ export default class Microphone extends React.Component {
       .then(responseFromServer => {
         console.log("response from handle submit is~~~>>>:", responseFromServer);
       })
+      .then(this.clearState(this.state))
       .catch((error) => {
         console.log('error from handle submit', error);
       })
+  }
+
+  clearState = (state) => {
+    this.setState({
+      dreamText: '',
+      dreamName: '',
+      success: 'Success! Your dream has been logged.'
+    })
   }
 
   //--- RENDER -----------------------------------------------
@@ -143,34 +153,55 @@ export default class Microphone extends React.Component {
     const { dreamName } = this.state
 
     return (
-      <div className='mic-container' >
-        <button id='microphone-btn'
-          className="button"
-          onClick={this.toggleListen}>
-          <i className="fas fa-microphone"></i>
-          &nbsp;
-          Toggle Microphone
+      <div>
+
+        <div className='mic-container microphone card is-rounded form-style' >
+          <h2 className="title">Make Your Recording</h2>
+          <button id='microphone-btn'
+            className="button"
+            onClick={this.toggleListen}>
+            <i className="fas fa-microphone"></i>
+            &nbsp;
+            Toggle Microphone
           </button>
-        <div id='interim'></div>
-        <div id='final'></div>
+          <div id='interim'></div>
 
-        <form onSubmit={event => this.handleSubmit(event)} >
-          <input
-            className="input"
-            value={dreamName} // this.state.email
-            onChange={event => this.genericSync(event)}
-            type='text'
-            name='dreamName'
-          />
-          <button>Submit</button>
-        </form>
 
-        <Logout />
-        {/* <h1>DREAM TEXT FROM STATE: {this.state.dreamText}</h1> */}
-      </div>
+          <div className="has-text-left">
+            <p>Final Text:</p>
+            <div id='final'></div>
+          </div>
+
+        </div>
+
+        <div className='card is-rounded form-style' >
+          <form onSubmit={event => this.handleSubmit(event)}>
+
+            <h2 className="title">Add Dream Details</h2>
+
+
+            <div className="field">
+              <label className="label">Dream Name</label>
+              <div className="control">
+                <input
+                  className="input"
+                  value={dreamName}
+                  onChange={event => this.genericSync(event)}
+                  type='text'
+                  name='dreamName'
+                />
+              </div>
+            </div>
+
+            <button className="button">Log my Dream</button>
+          </form>
+
+          <p className="success">{this.state.success}</p>
+          {/* <h1>DREAM TEXT FROM STATE: {this.state.dreamText}</h1> */}
+        </div >
+
+      </div >
     )
   }
 }
-
-
 

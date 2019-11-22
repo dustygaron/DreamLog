@@ -7,6 +7,7 @@ import Login from '../components/user-pages/Login'
 import RecordMyDream from '../components/RecordMyDream'
 import Dashboard from '../components/Dashboard';
 import axios from 'axios'
+import Logout from '../components/Logout'
 
 
 
@@ -75,14 +76,23 @@ export default class Nav extends React.Component {
 
                   <div className="buttons">
 
-                    <NavLink to="/signup-page" className="button is-primary">
-                      <strong>Sign up</strong>
-                    </NavLink>
+                    {!this.state.currentUser &&
+                      <NavLink to="/signup-page" className="button is-primary">
+                        <strong>Sign up</strong>
+                      </NavLink>
+                    }
 
-                    <NavLink to="/login-page" className="button is-light ">
-                      Log in
-                    </NavLink>
+                    {!this.state.currentUser &&
+                      <NavLink to="/login-page" className="button is-light ">
+                        Log in
+                      </NavLink>
+                    }
 
+                    {this.state.currentUser &&
+                      <NavLink to="/logged-out" className="button" >
+                        Log Out
+                      </NavLink>
+                    }
                   </div>
 
                 </div>
@@ -92,6 +102,7 @@ export default class Nav extends React.Component {
         </div>
 
         <Switch>
+
           <Route exact path="/" component={Home} />
 
           {/* <Route exact path="/record-my-dream" component={RecordMyDream} /> */}
@@ -105,15 +116,12 @@ export default class Nav extends React.Component {
             />
           } />
 
-
-
           <Route exact path="/dashboard" render={(props) =>
             <Dashboard {...props}
               currentUser={this.state.currentUser}
               onUserChange={userDoc => this.syncCurrentUSer(userDoc)}
             />
           } />
-
 
           <Route exact path="/signup-page" render={(props) =>
             <Signup {...props}
@@ -129,17 +137,17 @@ export default class Nav extends React.Component {
             />
           } />
 
-          {/* Login component */}
-          {/* <Route exact path="/sign-up" component={Dashboard} /> */}
-
-          {/* <Route exact path="/dashboard/:id"
-            render={props => <Dashboard {...props}
-              theUser={this.state.currentUser._id}
+          <Route exact path="/logged-out" render={(props) =>
+            <Logout {...props}
+              currentUser={this.state.currentUser}
+              onUserChange={userDoc => this.syncCurrentUSer(userDoc)}
             />
-            } /> */}
+          } />
+
+
         </Switch>
 
-      </div>
+      </div >
 
 
     )
