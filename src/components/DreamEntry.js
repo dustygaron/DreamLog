@@ -8,11 +8,11 @@ class DreamEntry extends React.Component {
     super(props)
 
     this.state = {
-      dreamName: '',
-      dreamText: '',
+      dreamName: this.props.obj.dreamName,
+      dreamText: this.props.obj.dreamText,
       show: false
     }
-    console.log("THIS IS STATE===>>>" + this.state.dreamName, this.state.dreamText)
+    // console.log("THIS IS STATE===>>>" + this.state.dreamName, this.state.dreamText)
   }
 
   delete = () => {
@@ -23,47 +23,31 @@ class DreamEntry extends React.Component {
   }
 
   edit = () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/edit/${this.props.obj._id}`)
-      .then(
-        console.log('Success! Retrieved single dream from DB.' + this.props.obj._id, this.props.obj.dreamName, this.props.obj.dreamText),
-      )
-      .then(this.sendEditDreamProps())
-      .then(this.setState({ show: true }))
+    axios.post(`${process.env.REACT_APP_API_URL}/edit/${this.props.obj._id}`)
+      .then(console.log('Success! Retrieved single dream from DB.' + this.props.obj._id, this.props.obj.dreamName, this.props.obj.dreamText))
+      .then(this.setState({
+        show: true,
+        dreamName: this.props.obj.dreamName,
+        dreamText: this.props.obj.dreamText,
+      }))
       // .then(window.location.reload(false))
       .catch(err => console.log(err))
   }
-
-  sendEditDreamProps = () => {
-    console.log('SEND EDIT DREAM PROPS ===>>>', this.props.obj.dreamName, this.props.obj.dreamText)
-    this.setState({
-      dreamName: this.props.obj.dreamName,
-      dreamText: this.props.obj.dreamText
-    })
-
-  }
-
-
-  // showModal = () => {
-  //   this.setState({ show: true });
-  // }
 
   hideModal = () => {
     this.setState({ show: false });
   }
 
   render() {
-
     return (
 
       <tr>
-        <td> {this.props.obj.dreamName} </td>
-
-        <td> {this.props.obj.dreamText}
-        </td>
+        <td> {this.state.dreamName} </td>
+        <td> {this.state.dreamText} </td>
         <td><button onClick={this.edit} className='button'>Edit</button></td>
         <td><button onClick={this.delete} className="button">Delete</button></td>
         <Modal show={this.state.show} handleClose={this.hideModal} className="container">
-          <EditEntry dreamName={this.state.dreamName} dreamText={this.state.dreamText} />
+          <EditEntry dreamName={this.state.dreamName} dreamText={this.state.dreamText} id={this.props.obj._id} />
         </Modal>
       </tr>
 
@@ -89,16 +73,16 @@ const Modal = ({ handleClose, show, children }) => {
         }}
       >
         {children}
-
       </section>
-      {/* <button className="button  modal-button"
+
+      <button className="button  modal-button"
         onClick={handleClose} >
-        <i class="fas fa-times"></i>
-      </button> */}
+        <i className="fas fa-times"></i>
+      </button>
 
     </div>
-  );
-};
+  )
+}
 
 export default DreamEntry
 
