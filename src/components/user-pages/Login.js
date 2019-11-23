@@ -3,6 +3,7 @@ import axios from 'axios';
 import { NavLink } from 'react-router-dom'
 
 
+
 export default class Login extends React.Component {
     constructor() {
         super();
@@ -21,8 +22,8 @@ export default class Login extends React.Component {
     }
 
     //placed inside catch of sign in
-    displayMessageErr(){
-        this.setState({ message: "Invalid credentials!"})
+    displayMessageErr() {
+        this.setState({ message: "Invalid credentials!" })
     }
 
 
@@ -39,12 +40,13 @@ export default class Login extends React.Component {
             { withCredentials: true }
         )
             .then(responseFromServer => {
-                console.log("response is:", responseFromServer);
-                const { userDoc } = responseFromServer.data;
-                this.props.onUserChange(userDoc);
+                console.log("response is:", responseFromServer)
+                const { userDoc } = responseFromServer.data
+                this.props.onUserChange(userDoc)
                 console.log("You are logged in.", userDoc)
+                console.log('CURRENT=====>>>>>' + userDoc.fullName)
+                this.setUserToState(userDoc.fullName)
                 this.props.history.push('/dashboard')
-                console.log('CURRENT=====>>>>>' + userDoc.fullName);
             })
             .catch((error) => {
                 this.displayMessageErr()
@@ -68,6 +70,12 @@ export default class Login extends React.Component {
                 console.log(error.config);
             })
 
+    }
+
+    setUserToState = (username) => {
+        this.setState({
+            fullName: username
+        })
     }
 
 
@@ -139,7 +147,7 @@ export default class Login extends React.Component {
                                         </div>
 
                                     </form>
-                                    {this.state.message && <div style={{color:"red"}}> {this.state.message} </div>}
+                                    {this.state.message && <div style={{ color: "red" }}> {this.state.message} </div>}
                                 </div>
                             </div>
                         </div>

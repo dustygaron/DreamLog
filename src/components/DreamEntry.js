@@ -71,13 +71,6 @@ export default class DreamEntry extends React.Component {
   }
 
 
-
-
-
-
-
-
-
   // --- RENDER ------------------------
   render() {
     return (
@@ -85,8 +78,16 @@ export default class DreamEntry extends React.Component {
       <tr>
         <td> {this.state.dreamName} </td>
         <td> {this.state.dreamText} </td>
-        <td><button onClick={this.edit} className='button'>Edit</button></td>
-        <td><button onClick={this.delete} className="button">Delete</button></td>
+        <td>
+          <button onClick={this.edit} className='button'>
+            Edit &nbsp; <i className="fas fa-edit"></i>
+          </button>
+        </td>
+        <td>
+          <button onClick={this.delete} className="button">
+            Delete &nbsp; <i className="fas fa-trash-alt"></i>
+          </button>
+        </td>
         <Modal show={this.state.show} handleClose={this.hideModal} className="container">
 
           <form onSubmit={event => this.handleSubmit(event)} className="card is-rounded form-style">

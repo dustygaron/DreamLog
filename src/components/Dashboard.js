@@ -3,7 +3,6 @@ import DreamEntry from '../components/DreamEntry'
 import axios from 'axios'
 
 
-
 export default class Dashboard extends React.Component {
 
   constructor(props) {
@@ -48,15 +47,14 @@ export default class Dashboard extends React.Component {
 
   render(props) {
     return (
+
       <div>
 
         <div className="container">
           <div className="spacer has-text-centered">
             <h1 className='title'>Your Dashboard</h1>
-            <h2> Welcome to your dashboard, __
-              {/* {props.FullName} */}
-              !
-            </h2>
+            <h2>Review your dream log.</h2>
+
           </div>
           <table className=" card table is-striped is-hoverable is-fullwidth">
             <thead className="table-header">

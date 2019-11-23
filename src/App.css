@@ -143,12 +143,7 @@ a.navbar-item:hover {
 }
 
 
-/* Make home bg purple gradient */
-/* .hero.is-primary {
-  background: linear-gradient(to top right, #524ad0 10%, #D099FA) !important;
-} */
-
-/* .gradient-1 {
+ .gradient-1 {
   background-image: linear-gradient(
     90deg,
     #9647ff,
@@ -173,7 +168,7 @@ a.navbar-item:hover {
     #16bdcc 95.1%,
     #13bfcb
   ) !important;
-} */
+} 
 
 .dark-purple-gradient {
   background-image: linear-gradient(90deg,
@@ -186,12 +181,33 @@ a.navbar-item:hover {
 .dark-purple-gradient h1,
 .dark-purple-gradient h2 {
   color: white;
+  opacity: 1 !important;
 }
 
-.hero-home-2 {
+/* Section 1 */
+.stars1 {
+  position: fixed;
+  background: url('./img/stars-bg.svg');
+  background-repeat: repeat-x;
+  width: 100%;
+  height: 100vh;
+  /* z-index: 0; */
+}
+
+/* Section 2 */
+.section-2 {
   background: #031425;
+  color: white;
 }
 
+.section-2 h1,
+.section-2 h2 {
+  color: white;
+  background: #031425;
+  padding:20px;
+}
+
+/* Section 3 */
 .hero-home-3 {
   background: black;
   padding: 50px 0 0 0;
@@ -271,4 +287,200 @@ a.navbar-item:hover {
 
 .textarea{
   margin-top: 10px;
+}
+
+
+/* parallax */
+.parallax {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.parallax__layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* Base */
+.parallax__layer--base {
+  transform: translateZ(0);
+   background-image: linear-gradient(90deg,
+  #20123a 20%,
+  #281346 40%,
+  #271a4c 60%,
+  #2f1859 80%) !important;
+  color: white;
+}
+
+.parallax__layer--base .title {
+color: white;
+text-align: center;
+}
+
+.parallax__layer--base .subtitle {
+color: white;
+text-align: center;
+}
+
+
+/* back */
+.parallax__layer--back {
+  transform: translateZ(-1px) scale(2);
+  background-color: #031425;
+  background: url('./img/stars-bg.svg') repeat; 
+  /* background-size: contain;  */
+  opacity: .25;
+}
+.parallax__layer--back .title {
+color: yellow;
+}
+
+/* deep */
+.parallax__layer--deep {
+  transform: translateZ(-2px) scale(3);
+  background: url('./img/starry.svg') repeat; 
+  opacity: .6;
+}
+
+.parallax__layer--deep .title {
+/* color: red; */
+}
+
+.parallax__group {
+  position: relative;
+  height: 100vh;
+  transform-style: preserve-3d;
+}
+
+/* Home */
+.audio-gif {
+margin: 0 auto;
+text-align: center;
+}
+
+.parallax__group h1 {
+  /* border: 1px solid red; */
+  margin-top: 30px;
+}
+
+.left-side {
+  padding: 30px 100px;
+}
+
+.right-side {
+  width: 60%;
+}
+
+.parallax h1 {
+  font-weight: 8px;
+  font-weight: bold;
+  line-height: 35px;
+}
+
+.subtitle  {
+  font-size: 24px;
+  line-height: 35px;
+  color: white;
+}
+
+.parallax .title,
+.parallax strong {
+  color: white !important;
+}
+
+.trans {
+  background: black !important;
+}
+
+.first-slide h1 {
+  margin-top: 20vh;
+ 
+}
+
+footer{
+  background: #eee !important;
+}
+
+.home {
+  background: black;
+}
+
+/* Floating boxes */
+
+.right-side {
+  position: relative;
+  /* border: 1px solid red; */
+}
+.box-1 {
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  font-size: 200px;
+  color: white;
+  animation: animateBox1 infinite;
+  animation-duration: 5s;
+}
+.box-2 {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 10px;
+  left: 200px;
+  font-size: 200px;
+   color: gray;
+   animation: animateBox2 infinite;
+   animation-duration: 7s;
+}
+.box-3 {
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  top: 20px;
+  left: 390px;
+  font-size: 200px;
+  color: darkgrey;
+  animation: animateBox3 infinite;
+  animation-duration: 6s;
+}
+
+/* Animation */
+@keyframes animateBox1 {
+ 0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-20px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
+@keyframes animateBox2 {
+   0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-20px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
+@keyframes animateBox3 {
+   0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-20px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
 }

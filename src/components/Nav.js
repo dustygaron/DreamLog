@@ -11,8 +11,6 @@ import Logout from '../components/Logout'
 
 
 
-
-
 export default class Nav extends React.Component {
 
   constructor() {
@@ -69,7 +67,7 @@ export default class Nav extends React.Component {
                   }
 
                   {this.state.currentUser &&
-                    <NavLink to="/dashboard" className="navbar-item top-nav-item" >
+                    <NavLink to="/dashboard" className="navbar-item top-nav-item" coolName={this.state.currentUser}>
                       Dashboard
                     </NavLink>
                   }
@@ -93,6 +91,7 @@ export default class Nav extends React.Component {
                         Log Out
                       </NavLink>
                     }
+
                   </div>
 
                 </div>
