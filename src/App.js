@@ -14,35 +14,19 @@ export default class App extends React.Component {
         const { userDoc } = responseFromTheBackend.data;
         this.syncCurrentUSer(userDoc);
       })
-      .catch(err => console.log("Err while getting the user from the checkuser route: ", err))
+      .catch(err => console.log("Error getting user App.js===>>>: ", err))
   }
 
   syncCurrentUSer(user) {
     this.setState({ currentUser: user })
   }
 
-  // axiosTest = () => {
-  //   axios.get(`https://api.ocr.space/parse/imageurl?apikey=helloworld&url=${img}`)
-  //   .then((res)=>{
-  //     console.log(res)
-  //   })
-  //   .catch((err)=>{
-  //     console.log(err)
-  //   })
-
-  // }
-
-
   render() {
-
-
     // console.log("the state in APPJS: ", this.state);
     return (
-
       <div >
         <Nav />
       </div>
-
     )
   }
 }

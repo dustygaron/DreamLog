@@ -1,7 +1,10 @@
 import React from "react"
-import audioGif from '../img/audio.gif'
-import audio3 from '../img/audio3.gif'
+// import audioGif from '../img/audio.gif'
+// import audio3 from '../img/audio3.gif'
 import { NavLink } from 'react-router-dom'
+import Wave from '../components/Wave'
+import WaveSection from '../components/WaveSection'
+import Card from '../components/Card'
 
 
 export default class Home extends React.Component {
@@ -10,120 +13,84 @@ export default class Home extends React.Component {
     return (
       <div>
 
-        <div className="parallax home">
+        <section className="hero is-full-height">
+          <div className="hero-group">
+            <h1>Log Your Dreams<br /> Through Speech Input</h1>
+            <p>Speak your dreams, track your subconscious.</p>
+          </div>
+          <Wave />
+        </section>
 
-          <div id="group1" className="parallax__group">
-            <div className="parallax__layer parallax__layer--base first-slide ">
-              <h1 className="title ">
-                Log your dreams through speech input.
-              </h1>
-              <h2 className="subtitle">
-                Speak your dreams, track your subconscious.
-              </h2>
-              <div className="audio-gif">
-                <img src={audioGif} alt="audio gif" />
-              </div>
+        <section>
+          <div className="cards container">
+            <h2>Take a Mental Inventory</h2>
+            <div className="card-group">
+              <Card
+                title="Dream 1"
+                text="Jan 1, 2020"
+                img={'https://i.gifer.com/RfR5.gif'}
+              />
+              <Card
+                title="Dream 2"
+                text="Jan 2, 2020"
+                img={'https://i.gifer.com/HAFq.gif'}
+              />
+              <Card
+                title="Dream 3"
+                text="Jan 3, 2020"
+                img={'https://i.gifer.com/WJD.gif'}
+              />
+              <Card
+                title="Dream 4"
+                text="Jan 4, 2020"
+                img={'https://i.gifer.com/T3B1.gif'}
+              />
+              <Card
+                title="Dream 5"
+                text="Jan 5, 2020"
+                img={'https://i.gifer.com/rn.gif'}
+              />
             </div>
           </div>
+        </section>
 
-          <div id="group2" className="parallax__group ">
-            <div className="parallax__layer parallax__layer--base trans">
-              <div className="flex container">
-                <div className="left-side">
-                  <h1 className="title has-text-left">
-                    Take a mental inventory
-                  </h1>
-                  <h2 className="subtitle has-text-left">
-                    Fire up the app as soon as you wake up. Log your dreams as they are fresh in your mind.
-                  </h2>
-                </div>
-                <div className="placeholder">
-                  <img src={audio3} alt="audio gif" />
-                </div>
-              </div>
-            </div>
-            <div className="parallax__layer parallax__layer--back">
-              {/* <div className="title">
-                FILLER BG IMAGE HERE
-              </div> */}
-            </div>
+        <section style={{ paddingTop: '30px' }}>
+          <WaveSection
+            title='Fire up the app as soon as you wake up.'
+            text='Log dreams as they are fresh in your memory.'
+            logo={require('../img/mic.gif')}
+          />
+        </section>
+
+
+
+        <section className="section has-text-centered cta">
+          <div className="container">
+            <h3 className="title">Ready to try it out?</h3>
+            <p className="subtitle">
+              Let's get started! It only takes a second to create your account.
+                    </p>
+
+            <p className="account-form">
+              <NavLink to="/signup-page">
+                <button className="button">Create your Account</button>
+              </NavLink>
+            </p>
           </div>
 
+        </section>
 
-          <div id="group3" className="parallax__group">
-            <div className="parallax__layer parallax__layer--fore">
-              <div className="title">Foreground Layer</div>
-            </div>
-            <div className="parallax__layer parallax__layer--base">
-              <div className="title">zzzzz zzzz z z zzzz zzzzzz</div>
-            </div>
-          </div>
-
-          <div id="group4" className="parallax__group">
-            <div className="parallax__layer parallax__layer--base">
-              <div className="flex container">
-                <div className="left-side">
-                  <h1 className="title has-text-left">
-                    Reflect on your Subconscious
-                  </h1>
-                  <h2 className="subtitle has-text-left">
-                    Turn your speech to text, creating a running inventory of your dream states.
-                  </h2>
-                </div>
-                <div className="right-side">
-                  <div className="box-1">
-                    <i class="fas fa-book"></i>
-                  </div>
-                  <div className="box-2">
-                    <i class="fas fa-comment-dots"></i>
-                  </div>
-                  <div className="box-3">
-                    <i class="fas fa-feather-alt"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="parallax__layer parallax__layer--back">
-              {/* <div className="title">Background Layer</div> */}
-            </div>
-
-            <div className="parallax__layer parallax__layer--deep">
-              {/* <div className="title">Deep Background Layer</div> */}
-            </div>
-
-          </div>
-
-
-
-          <section className="section has-text-centered gradient-1">
-            <div className="container">
-              <h1 className="title">Ready to try it out?</h1>
-              <h2 className="subtitle">
-                Let's get started! It only takes a second to <strong>create your account</strong>.
-                    </h2>
-
-              <p className="account-form">
-                <NavLink to="/signup-page">
-                  <button className="button">Create your Account</button>
-                </NavLink>
-              </p>
-            </div>
-          </section>
-
-        </div>
 
 
         <footer className="footer">
           <div className="content has-text-centered">
             <p>
-              &copy; 2019 <strong>DreamLog</strong> is a project by <a href="https://github.com/dustygaron">Dusty Garon</a> and
-               <a href="https://github.com/OscarLeon15"> Oscar Leon</a>.
+              &copy; 2019 <strong>DreamLog</strong> is a project by <a href="https://github.com/dustygaron">Dusty Garon</a>.
              </p>
           </div>
         </footer>
 
-      </div>
+      </div >
     )
   }
 }

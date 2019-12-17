@@ -23,7 +23,7 @@ export default class DreamEntry extends React.Component {
 
   edit = () => {
     axios.post(`${process.env.REACT_APP_API_URL}/edit/${this.props.obj._id}`)
-      .then(console.log('Success! Retrieved single dream from DB.' + this.props.obj._id, this.props.obj.dreamName, this.props.obj.dreamText))
+      .then(console.log('Success! Retrieved single dream from DB.===>>>' + this.props.obj._id, this.props.obj.dreamName, this.props.obj.dreamText))
       .then(this.setState({
         show: true,
         dreamName: this.props.obj.dreamName,
@@ -38,8 +38,7 @@ export default class DreamEntry extends React.Component {
   }
 
 
-  // --- EDIT ENTRY -------------------------
-
+  // EDIT ENTRY -------------------------
   genericSync = (event) => {
     console.log("Change logged from genericSync: ", event.target.value)
     const { name, value } = event.target
@@ -71,7 +70,7 @@ export default class DreamEntry extends React.Component {
   }
 
 
-  // --- RENDER ------------------------
+  // RENDER ------------------------
   render() {
     return (
 
@@ -153,13 +152,6 @@ const Modal = ({ handleClose, show, children }) => {
 
     </div>
   )
-
-
-
-
-
-
-
 
 }
 

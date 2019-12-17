@@ -22,30 +22,31 @@ export default class Nav extends React.Component {
 
   componentDidMount() {
     axios.get(`${process.env.REACT_APP_API_URL}/api/checkuser`, { withCredentials: true })
-      .then(responseFromTheBackend => {
-        // console.log("User in APP.JS: ", responseFromTheBackend)
-        const { userDoc } = responseFromTheBackend.data;
-        this.syncCurrentUSer(userDoc);
+      .then(res => {
+        console.log("User in app.js===>>> ", res)
+        // const { userDoc } = res.data;
+        this.syncCurrentUSer(res.data);
       })
-      .catch(err => console.log("Err while getting the user from the checkuser route: ", err))
+      .catch(err => console.log("Error while getting the user from the checkuser route: ", err))
   }
 
   syncCurrentUSer(user) {
     this.setState({ currentUser: user })
+    console.log('Sync current user set to===>>>', user)
   }
 
 
   render() {
+
     return (
       <div>
-        <div className="dark-purple-gradient">
+        <div className="dark">
 
-
-          <nav className="navbar container dark-purple-gradient" role="navigation" aria-label="main navigation" >
+          <nav className="navbar container" role="navigation" aria-label="main navigation" >
 
             <div className="navbar-brand">
               <NavLink to="/" className="navbar-item" >
-                <img src={logo} width="152" height="28" alt="lazy reader logo" />
+                <img src={logo} width="152" height="28" alt="dream log logo" />
               </NavLink>
 
               <a href="https://#" role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -101,11 +102,8 @@ export default class Nav extends React.Component {
         </div>
 
         <Switch>
-
           <Route exact path="/" component={Home} />
-
           {/* <Route exact path="/record-my-dream" component={RecordMyDream} /> */}
-
           {/* <Route exact path="/dashboard" component={Dashboard} /> */}
 
           <Route exact path="/record-my-dream" render={(props) =>
@@ -143,12 +141,8 @@ export default class Nav extends React.Component {
             />
           } />
 
-
         </Switch>
-
       </div >
-
-
     )
   }
 }
